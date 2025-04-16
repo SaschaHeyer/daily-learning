@@ -1,0 +1,15 @@
+New AWS Security Incident Response helps organizations respond to and recover from security events
+
+Today, we announce AWS Security Incident Response, a new service designed to help organizations manage security events quickly and effectively. The service is purpose-built to help customers prepare for, respond to, and recover from various security events, including account takeovers, data breaches, and ransomware attacks.
+
+Security Incident Response automates the triage and investigation of security findings from Amazon GuardDuty and integrated third party threat detection tools through AWS Security Hub. It facilitates communication and coordination and provides 24/7 access to security experts from the AWS Customer Incident Response Team (CIRT) who can assist during security events. The service aims to provide customers with more comprehensive support across the phases of incident response lifecycle, from preparation to detection, analysis, and recovery.
+
+Security events are becoming more pervasive and complex for customers. Security teams often face an overwhelming number of daily alerts, leading to potential misplaced priorities of resources and reduced effectiveness. Manual investigation of findings strains resources and may cause customers to overlook critical security alerts. Additionally, coordinating responses across multiple stakeholders, managing permissions in various environments, and documenting actions complicate the process. There is an opportunity to better support customers and remove various points of undifferentiated heavy lifting that customers face during security events.
+
+Key capabilities
+
+AWS Security Incident Response addresses these challenges through three main core capabilities that help customers effectively prepare for, respond to, and recover from security events :
+
+Security Incident Response automatically triages security findings from GuardDuty and supported third-party tools through Security Hub to identify high-priority incidents requiring immediate attention. The service uses automation and customer-specific information to filter and suppress security findings based on expected behavior, helping teams focus on critical security alerts.
+The service simplifies incident response by offering preconfigured notification rules and permission settings that can be extended to both internal and external stakeholders, including third-party security providers. Customers can access a centralized console with integrated features, such as messaging, secure data transfer, and video conference scheduling, all accessible through service APIs or the AWS Management Console. Additional capabilities include automated case history tracking and reporting, allowing security teams to focus on remediation and recovery efforts.
+Customers gain access to self-service investigation tools and 24/7 support from the AWS CIRT. Customers also have the ability to handle incidents independently or interoperate with third-party security vendors. These options allow customers to choose, manage, and conduct their incident response based on their specific needs and requirements.

@@ -1,0 +1,9 @@
+Streamline Kubernetes cluster management with new Amazon EKS Auto Mode
+
+Today, we’re announcing the general availability of Amazon Elastic Kubernetes Service (Amazon EKS) Auto Mode, a new capability to streamline Kubernetes cluster management for compute, storage, and networking, from provisioning to on-going maintenance with a single click. You can achieve higher agility, performance, and cost-efficiency by eliminating the operational overhead of managing the cluster infrastructure required to run production-grade Kubernetes applications at scale on Amazon Web Services (AWS).
+
+Customers choose Amazon EKS because they can use the open standards and portability of Kubernetes with the security, scalability, and availability of AWS cloud. While Kubernetes gives advanced customers deep controls over application operations, other customers find managing the components required for production-grade Kubernetes applications to be complex and labor-intensive.
+
+With the EKS Auto Mode, you can automate cluster management without deep Kubernetes expertise, because it selects optimal compute instances, dynamically scales resources, continuously optimizes costs, manages core add-ons, patches operating systems, and integrates with AWS security services. AWS expands its operational responsibility in EKS Auto Mode compared to customer-managed infrastructure in your EKS clusters. In addition to the EKS control plane, AWS will configure, manage, and secure the AWS infrastructure in EKS clusters that your applications need to run.
+
+You can now get started quickly, improve performance, and reduce overhead, enabling you to focus on building applications that drive innovation instead of on cluster management tasks. EKS Auto Mode also reduces the work required to acquire and run cost-efficient GPU-accelerated instances so that your generative AI workloads have the capacity they need when they need it.

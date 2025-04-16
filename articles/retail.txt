@@ -1,0 +1,99 @@
+Retail Product Taxonomy Classification in E-Commerce with Generative AI
++ Cost Optimization Strategies for Google Gemini
+The Challenge of Taxonomy Classification
+Accurately categorizing retail products across a predefined taxonomy is no small feat. Automating this task using large language models like Google Gemini allows retailers to maintain consistent categorization while scaling their operations efficiently. For instance, let's take this product description:
+Title: Interactive Electric Cat Toy with Motion Sensor, LED Light, and Feather Attachments
+Description: Keep your cat entertained and engaged with this motion-activated cat toy. The built-in motion sensor detects when your cat is nearby and automatically activates, making playtime exciting and interactive. The rotating feather attachment stimulates your cat's hunting instincts, while the LED light adds extra fun during night play. It is designed for easy setup and powered by a quiet motor, ensuring your pet stays active in a calm environment. Portable and lightweight, it's perfect for use anywhere in the house, encouraging your cat to stay active and healthy.
+You want to classify this into a specific taxonomy hierarchy like this:
+Animals & Pet Supplies > Pet Supplies > Cat Supplies > Cat Toys
+Traditional approaches might rely on manual classification or rule-based systems, which can be time-consuming and error-prone. Multiply this by thousands of products, and the process becomes overwhelming. Automating this task using machine learning models allows businesses to maintain consistent categorization while scaling their operations.
+Code on GitHub
+The complete code for this product taxonomy classification system, built using Streamlit, is available on GitHub.
+gen-ai-livestream/use-cases/product-taxonomy at main · SaschaHeyer/gen-ai-livestream
+Contribute to SaschaHeyer/gen-ai-livestream development by creating an account on GitHub.github.com
+Implementation
+For our product taxonomy classification system, we utilize Google's open product taxonomy, which provides a detailed and structured list of categories for e-commerce products. You can access this taxonomy here.
+# Google_Product_Taxonomy_Version: 2021-09-21
+Animals & Pet Supplies
+Animals & Pet Supplies > Live Animals
+Animals & Pet Supplies > Pet Supplies
+Animals & Pet Supplies > Pet Supplies > Bird Supplies
+Animals & Pet Supplies > Pet Supplies > Bird Supplies > Bird Cage Accessories
+Animals & Pet Supplies > Pet Supplies > Bird Supplies > Bird Cage Accessories > Bird Cage Bird Baths
+Animals & Pet Supplies > Pet Supplies > Bird Supplies > Bird Cage Accessories > Bird Cage Food & Water Dishes
+Animals & Pet Supplies > Pet Supplies > Bird Supplies > Bird Cages & Stands
+Animals & Pet Supplies > Pet Supplies > Bird Supplies > Bird Food
+Animals & Pet Supplies > Pet Supplies > Bird Supplies > Bird Gyms & Playstands
+Animals & Pet Supplies > Pet Supplies > Bird Supplies > Bird Ladders & Perches
+Animals & Pet Supplies > Pet Supplies > Bird Supplies > Bird Toys
+Animals & Pet Supplies > Pet Supplies > Bird Supplies > Bird Treats
+Animals & Pet Supplies > Pet Supplies > Cat Supplies
+...
+ However, it's important to note that any taxonomy can be used, as each e-commerce platform often follows its own unique structure. The model's flexibility allows for customized taxonomies suited to individual business needs.
+To classify products, we load the taxonomy as part of the system prompt. The prompt instructs the model to behave as a product taxonomy expert, categorizing products based on descriptions, titles, and optional metadata.
+Here's how the system instruction is built:
+system_instruction = f"As a product taxonomy expert based on a predefined 
+product taxonomy you are categorizing products either based on the image 
+and or the product description and potential additional metadata.
+\n\n{taxonomy}"
+
+model = GenerativeModel(
+    "gemini-1.5-flash-002",
+    system_instruction=[system_instruction]
+)
+This instruction ensures that the model understands the context of the taxonomy and how to classify products accordingly.
+The model initialization follows this structure:
+In this setup, product titles and descriptions (as mentioned earlier in the article) serve as the main inputs for the model. These inputs contain detailed product information, which is critical for accurate classification.
+One powerful feature of Google Gemini is its multimodal capabilities. While we currently use text inputs (titles and descriptions), Gemini also supports image inputs. This means that we can provide a product image and description to further improve classification accuracy, leveraging visual data to refine the model's understanding of the product.
+By incorporating this flexible and powerful AI model, businesses can automate taxonomy classification processes with high accuracy, whether using simple text inputs or enhancing the process with multimodal capabilities like images.
+Understanding the Costs
+Understanding the costs involved is essential when using Google Gemini models for product taxonomy classification, especially at scale. The cost is primarily driven by the number of tokens processed per request, including the input (product descriptions and taxonomy) and the model output (classification).
+In our case, the taxonomy context alone takes up 88105 tokens. Without further optimizations, classifying each product costs approximately $0.001653. While this may not seem significant for a single product, costs can quickly increase when classifying thousands or millions of products.
+Fortunately, Google provides ways to reduce these costs significantly. Let's break down two key options:
+1. Gemini Batch Generation (50% Discount)
+One of the easiest ways to reduce costs is by leveraging batch generation. Batch generation using the Gemini model is discounted by 50%, making it a great option for handling large-scale product updates or reclassifications.
+Batch generation makes perfect sense for products already in your catalog. It allows you to classify many products in one go at a much lower cost.
+Standard Cost per Product: $0.001653
+Batch Discount (50%): $0.0008265 per product
+
+2. Using Caching (Up to 75% Cheaper)
+For new incoming products, you can reduce costs even further by using Vertex AI context caching. Caching allows the model to reuse the previous context efficiently, substantially reducing costs. According to Google, using caching makes the input processing up to four times cheaper, reducing costs by as much as 75%, making it one of the most cost-effective options.
+Standard Cost per Product: $0.001653
+Cost with Caching (75% Reduction): $0.00041325 per product
+
+If you're interested in learning more about context caching and how it can drastically reduce costs when using Google Gemini models, check out my YouTube video, where I dive deeper into the topic.
+
+Response Times and Context Size
+The response time of 4200 ms is directly correlated to the large context size. The taxonomy alone takes up 88105 tokens, so the model needs more time to process and classify the product within this extensive context. It's important to note that the high context size contributes to the longer processing time.
+Leveraging batch processing becomes a more effective strategy for scenarios where many products need to be processed. Batch processing helps reduce costs and allows for faster parallel classification of multiple products, mitigating the impact of long response times due to large context sizes.
+Ensuring Consistent Responses with Controlled Generation
+With Google Gemini's controlled generation, we can ensure that the model consistently returns structured responses, which are ideal for use in subsequent systems, like the ones where products are stored or managed via an API.
+The response schema we use guarantees a structured format:
+RESPONSE_SCHEMA = {
+  "type": "object",
+  "properties": {
+    "taxonomy_hierarchy": {
+      "type": "string",
+      "description": "The full hierarchical taxonomy classification for the product."
+    }
+  },
+  "required": ["taxonomy_hierarchy"]
+}
+This ensures that every response will look like this:
+{
+"taxonomy_hierarchy": 
+  "Animals & Pet Supplies > Pet Supplies > Cat Supplies > Cat Toys"
+}
+Maintaining this structure allows the response to be easily integrated into other systems for product storage, catalog management, or inventory updates without manual adjustments.
+For more details on how controlled generation works with Google Gemini, check out my article.
+Vertex AI Controlled Generation with Gemini
+Respond reliably with JSON and other formatsmedium.com
+Why Automation Matters
+Automating the product classification process offers several key benefits:
+Consistency: The model ensures that every product is classified according to the same taxonomy rules, reducing human error.
+Scalability: As your product catalog grows, manual classification becomes less practical. Machine learning models can handle thousands of classifications.
+Efficiency: Automated classification frees up time for your team to focus on more complex tasks while the model handles the repetitive work of categorizing products.
+Improved Search and Filtering: Accurately classified products enhance searchability and filtering capabilities, making it easier for customers to find exactly what they're looking for. This leads to a better user experience and potentially higher sales.
+
+Thanks for reading and listening
+I appreciate your feedback and questions. You can find me on LinkedIn. Even better, subscribe to my YouTube channel ❤️.

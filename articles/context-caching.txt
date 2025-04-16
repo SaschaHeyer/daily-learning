@@ -1,0 +1,152 @@
+
+Search
+Write
+18
+
+Sascha Heyer
+
+Walter Lee
+
+Vertex AI Context Caching with Gemini
+Use caching to make your Gemini input up to 4 times cheaper.
+Sascha Heyer
+Google Cloud - Community
+Sascha Heyer
+
+Published in
+Google Cloud - Community
+
+·
+5 min read
+·
+Jul 2, 2024
+82
+
+
+4
+
+
+
+
+
+Context caching is designed to optimize the processing of large context windows in generative models. It enables the reuse of computed tokens across multiple requests, effectively reducing the need to recompute significant input contexts each time a new request is made.
+
+This is particularly beneficial when working with extensive documents, video files, and large system prompts, such as when using an in-context learning approach.
+
+
+Let us start with the benefit(s)
+Cost Savings: By storing computed tokens in memory, you pay only for the initial computation and a small fee for storing the cached tokens rather than recomputing them for each request.
+There is only one benefit. Many articles claim a significantly reduced response time (speed), but that is not true. Gemini Caching is reducing costs, not response times. We used caching extensively over the past few days, and I have not seen a single case of response time improvements. But that is fine. Google never claimed it would reduce response times. (If they did let me know I couldn’t find any claims.)
+
+Jump Directly to the Notebook and Code
+All the code for this article is ready to use in a Google Colab notebook. If you have questions, don’t hesitate to contact me via LinkedIn.
+
+Google Colab
+Edit description
+colab.research.google.com
+
+Use Context Caching
+
+Create a Context Cache
+I like how Google implemented that feature. We start by actually caching the object we want to work with.
+
+system_instruction = """
+You are an expert video analyzer, and you answer user's query based on the video file you have access to.
+Always return markdown.
+"""
+
+contents = [
+    Part.from_uri(
+    mime_type="video/mp4",
+    uri="gs://doit-ml-demo/gemini/caching/video/Getting started with Gemini on Vertex AI.mp4")
+]
+
+cached_content = caching.CachedContent.create(
+    #model_name="gemini-1.5-pro-001",
+    model_name="gemini-1.5-flash-001",
+    system_instruction=system_instruction,
+    contents=contents,
+    ttl=datetime.timedelta(minutes=60),
+)
+
+cache_name = cached_content.name
+print(cache_name)
+You need a minimum number of 32k tokens before you can use caching.
+Context caching is currently supported in region us-central1 (1st of July 2024).
+The cool thing caching allows function calling and system instructions.
+Caching supports all the mime types Gemini is supporting:
+
+Documents
+Images
+Videos
+Audio
+You can also print more details about your cache, which is particularly useful for checking the expireTime of your cache.
+
+cached_content = caching.CachedContent(cached_content_name=cache_name)
+print(cached_content)
+
+<vertexai.caching._caching.CachedContent object at 0x7b942ce42e00>: {
+  "name": "projects/sascha-playground-doit/locations/us-central1/cachedContents/5733786013084418048",
+  "model": "projects/sascha-playground-doit/locations/us-central1/publishers/google/models/gemini-1.5-pro-001",
+  "createTime": "2024-07-01T18:47:59.031095Z",
+  "updateTime": "2024-07-01T18:47:59.031095Z",
+  "expireTime": "2024-07-01T19:47:59.019461Z"
+}
+Use Context Cache
+To use the cache, let's compare how we use Gemini with and without cache.
+
+# Gemini without cache
+model = GenerativeModel("gemini-1.5-pro-001")
+response = model.generate_content("prompt")
+
+# Gemini with cache
+model = GenerativeModel.from_cached_content(cached_content=cached_content)
+response = model.generate_content("prompt")
+You can see for the cache we use the function from_cache_content which contains the reference to the model that was used during cache creation.
+
+Updating Cache Expiration
+You can update the expiration time of the cached content if needed.
+
+When creating the cache without the parameter, the default cache time is 60 minutes.
+You can cache as long as you like. There is no maximum caching time limit.
+cached_content.update_expiration(ttl=datetime.timedelta(minutes=3000))
+There are costs involved
+Caching is billed by the amount of hours the cache exists. There is dedicated pricing depending on what kind type you are using image, text, video or audio.
+
+
+Gemini Flash Cache Storage Pricing. You can find the latest pricing on the pricing page: https://cloud.google.com/vertex-ai/generative-ai/pricing#context-caching.
+In addition, we need to pay for the input, as we already do when using Gemini. However, we have also reduced costs when using cached content as we get the input at a lower price.
+
+Let us assume we have as input a prompt_token_count of 85208 tokens and we are using Gemini 1.5 Flash.
+
+Costs without caching
+0,042604$
+Costs with caching
+0,010651$
+Using caching makes it approximately 75% cheaper. Or in other words caching will make your Gemini input up to 4 times cheaper.
+
+Metrics confusion
+There needs to be more clarity around the metrics. Let’s dig into that to avoid any confusion once and for all. We can print the number of input and output tokens by using usage_metadata.
+
+response = model.generate_content("explain the details of this research paper")
+print(response.usage_metadata)
+This provides us with a response like this:
+
+candidates_token_count: 152
+This is the number of output/response tokens, which is the answer we are getting back from the model. Nothing will change here when using caching.
+prompt_token_count: 42638
+This is the input we are sending to the model. If you are using a cache, this will still be the number of total input tokens. Caching will not reduce the tokens used for your prompt/input. Nothing will change here either when using caching.
+total_token_count: 42790
+Both combined.
+Many people are confused about why the prompt token count isn’t reduced when using caching. This is because the input is still the same. It has just already been cached and has not been computed again. And precisely for that, we have reduced pricing for cached input tokens. Don’t worry, all is good. Just remember you have to pay approx 75% less for the same number of tokens.
+
+What about RAG vs. Caching when choosing one over the other?
+As you have seen, caching will not drastically reduce response times. At least for now, Google's Grounding or any other RAG approach still provides much better response times. However, caching makes sense if you intentionally have a large context. Some use cases work better with caching because the model needs all the input. With Google's large context-size models, we get access to many more use cases that are otherwise hard to implement with a traditional retrieval approach.
+
+In context learning
+Also known as few-shot learning or few-shot prompting.
+
+Caching provides a big step forward for use cases where we need to extensively use in-context learning. We can effectively use a large number of examples without the need to fine-tune the model while still keeping the costs low.
+
+Thanks for reading
+Your feedback and questions are highly appreciated. You can find me on LinkedIn or connect with me via Twitter @HeyerSascha. Even better, subscribe to my YouTube channel ❤️.

@@ -1,0 +1,41 @@
+Introducing the next generation of Amazon SageMaker: The center for all your data, analytics, and AI
+
+Today, we’re announcing the next generation of Amazon SageMaker, a unified platform for data, analytics, and AI. The all-new SageMaker includes virtually all of the components you need for data exploration, preparation and integration, big data processing, fast SQL analytics, machine learning (ML) model development and training, and generative AI application development.
+
+The current Amazon SageMaker has been renamed to Amazon SageMaker AI. SageMaker AI is integrated within the next generation of SageMaker while also being available as a standalone service for those who wish to focus specifically on building, training, and deploying AI and ML models at scale.
+
+Highlights of the new Amazon SageMaker
+At its core is SageMaker Unified Studio (preview), a single data and AI development environment. It brings together functionality and tools from the range of standalone “studios,” query editors, and visual tools that we have today in Amazon Athena, Amazon EMR, AWS Glue, Amazon Redshift, Amazon Managed Workflows for Apache Airflow (MWAA), and the existing SageMaker Studio. We’ve also integrated Amazon Bedrock IDE (preview), an updated version of Amazon Bedrock Studio, to build and customize generative AI applications. In addition, Amazon Q provides AI assistance throughout your workflows in SageMaker.
+
+Here’s a list of key capabilities:
+
+Amazon SageMaker Unified Studio (preview) – Build with all your data and tools for analytics and AI in a single environment.
+Amazon SageMaker Lakehouse – Unify data across Amazon Simple Storage Service (Amazon S3) data lakes, Amazon Redshift data warehouses, and third-party and federated data sources with Amazon SageMaker Lakehouse.
+Data and AI Governance – Securely discover, govern, and collaborate on data and AI with Amazon SageMaker Catalog, built on Amazon DataZone.
+Data Processing – Analyze, prepare, and integrate data for analytics and AI using open source frameworks on Amazon Athena, Amazon EMR, and AWS Glue.
+Model development – Build, train, and deploy ML and foundation models (FMs) with fully managed infrastructure, tools, and workflows with Amazon SageMaker AI.
+Generative AI app development – Build and scale generative AI applications with Amazon Bedrock.
+SQL analytics – Gain insights with Amazon Redshift, the most price-performant SQL engine.
+In this post, I give you a quick tour of the new SageMaker Unified Studio experience and how to get started with data processing, model development, and generative AI app development.
+
+Working with Amazon SageMaker Unified Studio (preview)
+With SageMaker Unified Studio, you can discover your data and put it to work using familiar AWS tools to complete end-to-end development workflows, including data analysis, data processing, model training, and generative AI app building, in a single governed environment.
+
+An integrated SQL editor lets you query data from multiple sources, and a visual extract, transform, and load (ETL) tool simplifies the creation of data integration and transformation workflows. New unified Jupyter notebooks enable seamless work across different compute services and clusters. With the new built-in data catalog functionality, you can find, access, and query data and AI assets across your organization. Amazon Q is integrated to streamline tasks across the development lifecycle.
+
+Data processing
+SageMaker integrates with SageMaker Lakehouse and lets you analyze, prepare, integrate, and orchestrate your data in a unified experience. You can integrate and process data from various sources using the provided connectivity options.
+
+Start by creating a project in SageMaker Unified Studio, choosing the SQL analytics or data analytics and AI-ML model development project profile. Projects are a place to collaborate with your colleagues, share data, and use tools to work with data in a secure way. Project profiles in SageMaker define the preconfigured set of resources and tools that are provisioned when you create a new project. In your project, choose Data in the left menu and start adding data sources.
+
+Model development
+SageMaker Unified Studio includes capabilities from SageMaker AI, which provides infrastructure, tools, and workflows for the entire ML lifecycle. From the top menu, select Build to access tools for data preparation, model training, experiment tracking, pipeline creation, and orchestration. You can also use these tools for model deployment and inference, machine learning operations (MLOps) implementation, model monitoring and evaluation, as well as governance and compliance.
+
+To start your model development, create a project in SageMaker Unified Studio using the data analytics and AI-ML model development project profile and explore the new unified Jupyter notebooks. In the top menu, select Build and choose JupyterLab. You can use the new unified notebooks to seamlessly work across different compute services and clusters. You can use these notebooks to switch between environments without leaving your workspace, streamlining your model development process.
+
+Generative AI app development
+Use the new Amazon Bedrock IDE to develop generative AI applications within Amazon SageMaker Unified Studio. The Amazon Bedrock IDE includes tools to build and customize generative AI applications using FMs and advanced capabilities such as Amazon Bedrock Knowledge Bases, Amazon Bedrock Guardrails, Amazon Bedrock Agents, and Amazon Bedrock Flows to create tailored solutions aligned with your requirements and responsible AI guidelines.
+
+Choose Discover in the top menu of SageMaker Unified Studio to browse Amazon Bedrock models or experiment with the model playgrounds.
+
+With the Amazon Bedrock IDE, you can build chat agents and create knowledge bases from your proprietary data sources with just a few clicks, enabling Retrieval-Augmented Generation (RAG). You can add guardrails to promote safe AI interactions and create functions to integrate with any system. With built-in model evaluation features, you can test and optimize your AI applications’ performance while collaborating with your team. Design flows for deterministic genAI-powered workflows, and when ready, share your applications or prompts within the domain or export them for deployment anywhere—all while maintaining control of your project and domain assets.

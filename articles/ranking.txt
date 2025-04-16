@@ -1,0 +1,187 @@
+
+Search
+Write
+
+Sascha Heyer
+Reranking
+A Reranker is a language model that computes a relevance score using a document and a query.
+Sascha Heyer
+Google Cloud - Community
+Sascha Heyer
+
+Published in
+Google Cloud - Community
+
+·
+7 min read
+·
+Aug 23, 2024
+54
+
+
+
+
+
+
+Imagine searching for an answer, and you go to the library. The librarian hands you a pile of books, but only a few pages are actually useful. Frustrating, right? That’s where reranking comes in. It’s like this magic technology that puts the most relevant pages on top.
+
+What is a Ranker?
+A Ranker is a language model that computes a relevance score using a document and a query. The score computed is high for a document with a contextually relevant query document pair and low for the opposite.
+
+
+This score can be used to reorder documents to refine our top-n further.
+
+Reranker can be used standalone, but we usually combine them with a vector search after retrieval. We'll discuss that later in the article.
+
+TLDR
+If you ask yourself where is the difference to an embedding search:
+
+Embedding search is about semantic similarity
+Reranking is about the contextual similarity
+Livestream, YouTube and Code
+The full code for this article is available on GitHub.
+
+GitHub - SaschaHeyer/gen-ai-livestream
+Contribute to SaschaHeyer/gen-ai-livestream development by creating an account on GitHub.
+github.com
+
+This article was part of my #4 Friday livestream series. You can watch all the recordings. Join me every Friday from 10–11:30 AM CET / 8–10:30 UTC.
+
+The streams will pop up in the feed. You will receive a notification if you subscribe to one of the platforms.
+
+LinkedIn: https://www.linkedin.com/in/saschaheyer
+Twitch: https://www.twitch.tv/saschaheyer
+YouTube: https://www.youtube.com/@ml-engineer
+Kick: https://kick.com/mlengineer
+
+Why Reranking?
+As I mentioned, reranking usually comes after the first stage of document retrieval. It reorders the initially retrieved documents, improving the precision of the results.
+
+With a Vector Search, we retrieve candidates that are semantically similar to your search query. If that is your use case, that's good, but usually, we want to use the candidates to answer a question.
+
+This process is particularly important in Retrieval Augmented Generation (RAG) systems, where the relevance of the documents provided to the language model directly impacts the quality of the generated output.
+
+With a reranker, we prioritize the most contextual and relevant documents and ensure we only provide the best information possible to our LLM. This helps to reduce context size and noise, which leads to less hallucination and more relevant answers.
+
+Ranking in Practice
+Retrieval and Ranking are usually combined. The retrieval step is very efficient when working on large amounts of data. Ranking is usually slower, thus the combination of both in a two-step process.
+
+Retrieval (Higher recall and lower precision)
+The system scans a large dataset, stored as embeddings in a vector database, to retrieve a few hundred to a few thousand documents that are semantically similar to the user’s query.
+The goal here is to retrieve as many potentially relevant documents as possible, even if some of them might not be perfect matches. This results in higher recall (capturing more relevant documents) but lower precision (some of the retrieved documents might not be very relevant).
+Ranking (Higher precision and lower recall)
+The Ranking API then ranks the retrieved documents based on their relevance to the query, contextual similar. The system scores and orders these documents, ensuring that the most relevant ones are prioritized for the final output.
+In this phase, the focus shifts to refining the results. The system prioritizes the most relevant documents, which improves precision (ensuring the top results are highly relevant) but may lower recall (some less relevant documents are filtered out).
+Together, these two phases efficiently filter and prioritize information, transforming a vast dataset into a refined list of highly relevant documents. With reranking, we prune irrelevant context.
+
+
+Tip
+Ranking can also be extremely useful if you want to reorder documents that come from different retrieval sources.
+
+Usage
+In this article, we use Google’s Ranking API, also known as Vertex Search Ranking API or Vertex AI Agent Builder Ranking API (yes, there have been too many renamings. I simply call it Google Ranking API).
+
+It isn’t the only one available. Cohere or Voyage AI also provides one. And there are also open-source offerings like bge-reranker or mixbread on Hugging Face.
+
+To use the Googles Ranking API, we create a RankRequest with multiple RankRecord where each record consists of:
+
+An ID is a unique identifier for us to work with the response
+An optional title of the document
+And the document content itself.
+We send the records together with our Query and the number of top_n documents we want to retrieve from the API endpoint.
+
+from google.cloud import discoveryengine_v1alpha as discoveryengine
+
+project_id = "sascha-playground-doit"
+client = discoveryengine.RankServiceClient()
+
+ranking_config = client.ranking_config_path(
+    project=project_id,
+    location="global",
+    ranking_config="default_ranking_config",
+)
+
+query = "Which language can I use for web development?"
+
+records = [
+    discoveryengine.RankingRecord(
+        id="1",
+        title="",
+        content="Python is a popular programming language known for its simplicity and readability."
+    ),
+    discoveryengine.RankingRecord(
+        id="2",
+        title="",
+        content="The Python snake is one of the largest species of snakes in the world."
+    ),
+    discoveryengine.RankingRecord(
+        id="3",
+        title="",
+        content="In Greek mythology, Python was a serpent killed by the god Apollo."
+    ),
+    discoveryengine.RankingRecord(
+        id="4",
+        title="",
+        content="Python's extensive libraries and frameworks make it a versatile language for web development."
+    ),
+]
+
+request = discoveryengine.RankRequest(
+    ranking_config=ranking_config,
+    model="semantic-ranker-512@latest",
+    top_n=4, 
+    query=query,
+    records=records,
+)
+
+response = client.rank(request=request)
+
+for record in response.records:
+    print(f"ID: {record.id}, Score: {record.score:.2f}, Content: {record.content}")
+Let us take a small example to the test
+For this test, we have four documents. Two of them are about Python as a programming language, one about the Python animal, and the other about Python from Greek mythology.
+
+We're going to take a query and see how well a normal vector search compares to an additional re-ranking step.
+
+Query:
+Can python be used for web development?
+Here are our documents: Documents 1 and 4 are about Python as a programming language. Only document 4 properly answers our specific question (answer section highlighted in bold).
+
+Python is a popular programming language known for its simplicity and readability, making it a preferred choice for both beginners and experienced developers. Its clear syntax and the vast ecosystem of libraries allow for rapid development and easy maintenance of codebases. Furthermore, Python’s community-driven development ensures continuous improvement and support.
+The Python snake is one of the largest species of snakes in the world, often recognized by its impressive size and strength. Found primarily in tropical regions of Africa and Asia, these non-venomous constrictors can grow to lengths exceeding 20 feet, making them formidable predators in their natural habitats. Despite their fearsome reputation, pythons are also known for their adaptability.
+In Greek mythology, Python was a monstrous serpent or dragon who dwelled in the caves of Mount Parnassus, terrorizing the inhabitants of the nearby city of Delphi. According to the myth, Python was slain by the god Apollo, who sought revenge for the serpent’s attempts to kill his mother, Leto, during her pregnancy. This act not only established Apollo’s prowess but also laid the foundation for the establishment of the Oracle of Delphi.
+Python’s extensive libraries and frameworks make it a versatile language for web development, offering powerful tools for building everything from simple websites to complex web applications. Frameworks like Django and Flask provide developers with a robust foundation for creating scalable, secure, and maintainable web services. Additionally, Python’s compatibility with other technologies and its support for modern programming paradigms like asynchronous programming ensure that developers can efficiently handle the demands of today’s web environments.
+If we visualize the scores, we can see that Sentences 1 and 4 rank very similarly using just an embedding score (our normal retrieval).
+
+The ranking score, in comparison, shows a strong indication that Sentence 4 properly matches our initial query.
+
+
+The full code for this example, including the generation of the comparison chart itself and a sqlite_vec example, is all part of the GitHub repository.
+
+GitHub - SaschaHeyer/gen-ai-livestream
+Contribute to SaschaHeyer/gen-ai-livestream development by creating an account on GitHub.
+github.com
+
+Limits
+Google’s semantic ranker model supports up to 512 tokens per record, including the title and content. Anything longer will be truncated. With that limitation, we need to ensure we properly chunk the documents even before we store them in the Vector Database.
+A RankRequest can contain up to 200 records.
+Latency
+I also measured the average time it takes to rank the documents from our example. With around 700ms response latency, this adds a bit of overhead to our two-stage process. It might be worth covering in the next article to compare the available rankers. Let me know what you think.
+
+Additionally, I checked, and the latency directly correlates to the number of tokens you send to the Ranking API. More tokens require more time, which makes sense considering a ranker is in and mostly a language model itself.
+
+Pricing
+Google Ranking API is priced at $1.00 per 1000 queries.
+1 query can be up to 100 documents.
+
+The Cohere Rerank API costs $2.00 per 1000 queries with the same number of documents per query.
+
+Should I use a Reranker?
+The short answer is yes.
+Adding a Reranker tends to lead to better results.
+
+Considering the low effort required to implement it and the comparable low costs, it can be a quick win for many projects.
+With ranking models, we ensure that we only provide the best information to our LLM, which can enhance the model's response.
+Using a ranker is cheaper than achieving the same with an LLM.
+Thanks for reading and watching
+I appreciate your feedback and questions. You can find me on LinkedIn. Even better, subscribe to my YouTube channel ❤️.

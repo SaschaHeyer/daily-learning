@@ -1,0 +1,11 @@
+New RAG evaluation and LLM-as-a-judge capabilities in Amazon Bedrock
+
+Today, we’re announcing two new evaluation capabilities in Amazon Bedrock that can help you streamline testing and improve generative AI applications:
+
+Amazon Bedrock Knowledge Bases now supports RAG evaluation (preview) – You can now run an automatic knowledge base evaluation to assess and optimize Retrieval Augmented Generation (RAG) applications using Amazon Bedrock Knowledge Bases. The evaluation process uses a large language model (LLM) to compute the metrics for the evaluation. With RAG evaluations, you can compare different configurations and tune your settings to get the results you need for your use case.
+
+Amazon Bedrock Model Evaluation now includes LLM-as-a-judge (preview) – You can now perform tests and evaluate other models with humanlike quality at a fraction of the cost and time of running human evaluations.
+
+These new capabilities make it easier to go into production by providing fast, automated evaluation of AI-powered applications, shortening feedback loops and speeding up improvements. These evaluations assess multiple quality dimensions including correctness, helpfulness, and responsible AI criteria such as answer refusal and harmfulness.
+
+To make it easy and intuitive, the evaluation results provide natural language explanations for each score in the output and on console, and the scores are normalized from 0 to 1 for ease of interpretability. Rubrics are published in full with the judge prompts in the documentation so non-scientists can understand how scores are derived.

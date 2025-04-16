@@ -1,0 +1,70 @@
+[
+    {
+        "speaker": "Sascha",
+        "text": "Hey Ieva, welcome back to the AWS Insiders podcast, sponsored by do it!"
+    },
+    {
+        "speaker": "Ieva",
+        "text": "Thanks Sascha!  Excited to be here again. Today's topic: Reranking, right?"
+    },
+    {
+        "speaker": "Sascha",
+        "text": "Exactly!  Reranking in AWS. It's like, \u00e4h, magic for search results. You know, you search for something and get a huge pile of stuff, but only a few bits are actually useful.  Reranking makes the useful bits jump to the top!"
+    },
+    {
+        "speaker": "Ieva",
+        "text": "So it's like having a super-powered librarian, right?  It prioritizes the most relevant information. Amazing!"
+    },
+    {
+        "speaker": "Sascha",
+        "text": "Totally!  And \u00e4h, think about it in the context of, like, Retrieval Augmented Generation, RAG.  The better the documents, the better the output from your language model, right?"
+    },
+    {
+        "speaker": "Ieva",
+        "text": "Makes perfect sense.  So how does it work in practice?  Is it just one step?"
+    },
+    {
+        "speaker": "Sascha",
+        "text": "No, it's usually a two-step process. First, a retrieval step to get a bunch of candidates. Then, reranking refines those candidates, boosting the most relevant ones. Higher precision!"
+    },
+    {
+        "speaker": "Ieva",
+        "text": "So, retrieval gets a wider net, and reranking refines that net to catch only the best fish? Awesome analogy!"
+    },
+    {
+        "speaker": "Sascha",
+        "text": "Exactly!  And \u00e4h, we can even use it to reorder results from different sources.  Super flexible!"
+    },
+    {
+        "speaker": "Ieva",
+        "text": "That's powerful.  What services offer this reranking magic in AWS?"
+    },
+    {
+        "speaker": "Sascha",
+        "text": "Well,  \u00e4h, Google's got their Ranking API.  But there are others too, like Cohere or even open-source options.  Plenty of choices!"
+    },
+    {
+        "speaker": "Ieva",
+        "text": "And what about the costs?  Is it expensive to use?"
+    },
+    {
+        "speaker": "Sascha",
+        "text": "Not too bad. It's pretty affordable, especially considering the improvement in results.  A small price to pay for highly relevant information!"
+    },
+    {
+        "speaker": "Ieva",
+        "text": "So, should everyone be using reranking?"
+    },
+    {
+        "speaker": "Sascha",
+        "text": "Yes!  It's a quick win for many projects.  The effort is low, and the benefits are huge.  Highly recommend it!"
+    },
+    {
+        "speaker": "Ieva",
+        "text": "Great advice, Sascha! Thanks for explaining reranking so clearly.  Listeners, make sure to check out the show notes for links and more information.  Until next time on the AWS Insiders podcast!"
+    },
+    {
+        "speaker": "Sascha",
+        "text": "Thanks Ieva! And remember, this podcast is sponsored by do it!  Get it done!"
+    }
+]

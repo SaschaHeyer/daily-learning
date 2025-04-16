@@ -1,0 +1,236 @@
+
+Search
+Write
+18
+
+Sascha Heyer
+Multimodal Document Processing
+How to process 10251 documents for just 1$. Built within 15 minutes.
+Sascha Heyer
+Google Cloud - Community
+Sascha Heyer
+
+Published in
+Google Cloud - Community
+
+·
+6 min read
+·
+Sep 6, 2024
+28
+
+
+
+
+
+
+Extracting structured data from documents used to be slow and tedious, requiring weeks of manual data labeling and model training. Even then, the models were fragile. Any change in document structure could break them, leading to more time spent.
+
+Today, everything is different. With multimodal models, we can now write a prompt, define the desired output and format, and extract data from any document type in minutes. We can implement the next generation of AI applications much faster than before.
+
+There is no training, no labeling, just results.
+
+Best of all, this approach is ready for production in under 15 minutes. Curious how it works? Let’s dive in.
+
+This article is part #6 of my Friday's livestream series. You can watch all the previous recordings. Join me every Friday from 10–11:30 AM CET / 8–10:30 UTC.
+
+Multimodal Models and Controlled Generation are the perfect combination
+Multimodal models are models that can process different modalities like images, documents, video, audio, and text and return text. Google's Gemini model is a multimodal model.
+
+Controlled Generation allows us to control the model output by defining a schema that ensures the structure like JSON.
+
+We're going to take advantage of controlled generation. If that's new for you, you might have a look and come back later. I wrote an article about it.
+
+Vertex AI Controlled Generation with Gemini
+Respond reliably with JSON and other formats
+medium.com
+
+To use Gemini multimodal capabilities, we pass a document in an image or PDF format together with a prompt to Gemini.
+
+
+The prompt describes the task we want to achieve:
+“As an expert in document entity extraction, you parse documents to identify and organize specific entities from diverse sources into structured formats”
+
+Without any further prompt engineering, the model would always return in a different answer format. We could instruct the model with the prompt to ensure a specific format, but that doesn't work well and is tedious.
+
+Instead, we can use controlled generation and define exactly what the response should look like. The really cool thing is that this way, we already know what entities we want to extract.
+
+Assume we have an invoice and want to extract all the items.
+
+
+For now, let us focus on the schema. In a second, we will see how this is combined with the Gemini model. A response schema has properties. Each property, in our case, represents a piece of information we want to extract.
+
+RESPONSE_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "items": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "description": {"type": "string"},
+                    "quantity": {"type": "string"},
+                    "price": {"type": "string"},
+                    "total": {"type": "string"}
+                },
+                "required": ["description", "quantity", "price", "total"]
+            }
+        }
+    }
+}
+The names in the schema don't have to be a perfect match. We have quantity defined as QTY in the invoice but as quantity in the schema. The model is capable enough to adapt to changes.
+
+import json
+import vertexai
+from vertexai.generative_models import GenerativeModel, Part, GenerationConfig
+
+vertexai.init(project="sascha-playground-doit", location="us-central1")
+
+prompt = """
+You are a document entity extraction specialist. 
+Given a document, your task is to extract the text value of entities.
+- Generate null for missing entities.
+"""
+
+with open("sample-documents/4.pdf", "rb") as pdf_file:
+    pdf = pdf_file.read()
+
+document = Part.from_data(data=pdf, mime_type="application/pdf")
+
+RESPONSE_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "items": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "description": {"type": "string"},
+                    "quantity": {"type": "string"},
+                    "total": {"type": "string"}
+                },
+                "required": ["description", "quantity", "price", "total"]
+            }
+        }
+    }
+}
+
+model = GenerativeModel("gemini-1.5-pro-001")
+
+generation_config = GenerationConfig(
+        max_output_tokens=8192,
+        temperature=0,
+        top_p=0.95,
+        response_mime_type="application/json",
+        response_schema=RESPONSE_SCHEMA
+)
+    
+responses = model.generate_content(
+        [document, prompt],
+        generation_config=generation_config,
+)
+    
+print(responses.usage_metadata)
+    
+json_response = responses.candidates[0].content.parts[0].text
+
+json_data = json.loads(json_response)
+formatted_json = json.dumps(json_data, indent=4)
+    
+print(formatted_json)
+    
+with open('result.json', 'w') as json_file:
+  json_file.write(formatted_json)
+    
+Results and Flexibility
+This approach is extremely flexible because we are using Google's Multimodal Model. It adapts to document changes, like different entity names and document structures. Keep in mind we haven't trained any model, nor did we label documents.
+
+With controlled generation, we can extract exactly:
+
+The information we need
+In the format, we need
+If we also want to extract the invoice number we simply extend the schema.
+
+RESPONSE_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "invoice_number": {"type": "string"}, #added
+        "items": {
+            .... already defined before
+        }
+    }
+}
+And here is the output based on the invoice and our response schema.
+
+{
+    "invoice_number": "01234",
+    "items": [
+        {
+            "description": "Photography service",
+            "quantity": "1",
+            "total": "500"
+        },
+        {
+            "description": "Videography service",
+            "quantity": "1",
+            "total": "1000"
+        },
+        {
+            "description": "Video editing",
+            "quantity": "2",
+            "total": "500"
+        },
+        {
+            "description": "Transportation fee",
+            "quantity": "1",
+            "total": "100"
+        }
+    ]
+}
+Pricing
+With just one dollar, we can process an impressive amount of 10k documents with Gemini Flash.
+
+Gemini 1.5 Flash: 10251 documents per $1
+Gemini 1.5 Pro: 169 documents per $1
+To process one invoice from our example, we have the following costs.
+
++-------------------------+----------------------+--------------------+
+|         **Cost**        | **Gemini 1.5 Flash** | **Gemini 1.5 Pro** |
++-------------------------+----------------------+--------------------+
+|   Input Token Costs     | $0.00004215          | $0.002810          |
+|   Output Token Costs.   | $0.00003540          | $0.001770          |
+|   Image Costs.          | $0.000020            | $0.001315          |
++-------------------------+----------------------+--------------------+
+| **Total**               | **$0.00009755**       | **$0.005895**     |
++-------------------------+----------------------+--------------------+
+Those costs are for:
+
+562 input tokens (~2248 characters)
+118 output tokens (~ 472 characters)
+1 image
+How does the pricing compare to Google Document AI?
+Google provides document processing capabilities with Document AI. To extract entities from a custom document using Document AI, you need to pay $30 per 1000 pages.
+
+Let us take the above example from our use case and see how the Document AI pricing compares to Gemini 1.5 Pro and Gemini 1.5 Flash. Assuming we have a budget of $30, we can process the following number of documents:
+
+Gemini 1.5 Flash
+307534 documents
+Gemini 1.5 Pro
+5089 documents
+The cost difference between Gemini 1.5 Flash and Document AI is impressive. Next time you consider Document AI, it might be worth checking whether your use case is suitable for the approach we showed in this article.
+
+Benefits and Conclusion
+With traditional Machine Learning, we had to label a few hundred of those documents and train a model that could extract entities. We might even need to involve OCR first and then apply a model to extract.
+
+With Multimodal Models, all we need is a prompt 📝 and a multimodal 🧠 model like Gemini. You can literally do that within 15 minutes. The approach we use in this article easily adapts to any type of document within minutes.
+
+
+I hope the knowledge you gain from this article goes far beyond document processing. I hope you get a good understanding of how to use multimodal models for document understanding in general.
+
+The full code for this article is available on GitHub
+gen-ai-livestream/document-processing at main · SaschaHeyer/gen-ai-livestream
+Contribute to SaschaHeyer/gen-ai-livestream development by creating an account on GitHub.
+github.com
+
+Thanks for reading and watching
+I appreciate your feedback and questions. You can find me on LinkedIn. Even better, subscribe to my YouTube channel ❤️.

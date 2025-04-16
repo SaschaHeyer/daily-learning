@@ -1,0 +1,8 @@
+Amazon Bedrock Marketplace: Access over 100 foundation models in one place
+
+Today, we’re introducing Amazon Bedrock Marketplace, a new capability that gives you access to over 100 popular, emerging, and specialized foundation models (FMs) through Amazon Bedrock. With this launch, you can now discover, test, and deploy new models from enterprise providers such as IBM and Nvidia, specialized models such as Upstages’ Solar Pro for Korean language processing, and Evolutionary Scale’s ESM3 for protein research, alongside Amazon Bedrock general-purpose FMs from providers such as Anthropic and Meta.
+
+Models deployed with Amazon Bedrock Marketplace can be accessed through the same standard APIs as the serverless models and, for models which are compatible with Converse API, be used with tools such as Amazon Bedrock Agents and Amazon Bedrock Knowledge Bases.
+
+As generative AI continues to reshape how organizations work, the need for specialized models optimized for specific domains, languages, or tasks is growing. However, finding and evaluating these models can be challenging and costly. You need to discover them across different services, build abstractions to use them in your applications, and create complex security and governance layers. Amazon Bedrock Marketplace addresses these challenges by providing a single interface to access both specialized and general-purpose FMs.
+

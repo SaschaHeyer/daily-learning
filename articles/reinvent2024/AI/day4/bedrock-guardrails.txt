@@ -1,0 +1,9 @@
+Amazon Bedrock Guardrails now supports multimodal toxicity detection with image support (preview
+
+Today, we’re announcing the preview of multimodal toxicity detection with image support in Amazon Bedrock Guardrails. This new capability detects and filters out undesirable image content in addition to text, helping you improve user experiences and manage model outputs in your generative AI applications.
+
+Amazon Bedrock Guardrails helps you implement safeguards for generative AI applications by filtering undesirable content, redacting personally identifiable information (PII), and enhancing content safety and privacy. You can configure policies for denied topics, content filters, word filters, PII redaction, contextual grounding checks, and Automated Reasoning checks (preview), to tailor safeguards to your specific use cases and responsible AI policies.
+
+With this launch, you can now use the existing content filter policy in Amazon Bedrock Guardrails to detect and block harmful image content across categories such as hate, insults, sexual, and violence. You can configure thresholds from low to high to match your application’s needs.
+
+This new image support works with all foundation models (FMs) in Amazon Bedrock that support image data, as well as any custom fine-tuned models you bring. It provides a consistent layer of protection across text and image modalities, making it easier to build responsible AI applications.

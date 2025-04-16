@@ -1,0 +1,67 @@
+IDE extension for AWS Application Composer enhances visual modern applications development with AI-generated IaC
+by Donnie Prakoso on 30 NOV 2023 in Amazon CodeWhisperer, AWS Application Composer, AWS re:Invent, AWS Serverless Application Model, Developer Tools, Launch, News, Serverless Permalink  Share
+Voiced by Polly
+Today, I’m happy to share the integrated development environment (IDE) extension for AWS Application Composer. Now you can use AWS Application Composer directly in your IDE to visually build modern applications and iteratively develop your infrastructure as code templates with Amazon CodeWhisperer.
+
+
+
+Announced as preview at AWS re:Invent 2022 and generally available in March 2023, Application Composer is a visual builder that makes it easier for developers to visualize, design, and iterate on an application architecture by dragging, grouping, and connecting AWS services on a visual canvas. Application Composer simplifies building modern applications by providing an easy-to-use visual drag-and-drop interface and generates IaC templates in real time.
+
+AWS Application Composer also lets you work with AWS CloudFormation resources. In September, AWS Application Composer announced support for 1000+ AWS CloudFormation resources. This provides you the flexibility to define configuration for your AWS resources at a granular level.
+
+Building modern applications with modern tools
+The IDE extension for AWS Application Composer provides you with the same visual drag-and-drop experience and functionality as what it offers you in the console. Utilizing the visual canvas in your IDE means you can quickly prototype your ideas and focus on your application code.
+
+With Application Composer running in your IDE, you can also use the various tools available in your IDE. For example, you can seamlessly integrate IaC templates generated real-time by Application Composer with AWS Serverless Application Model (AWS SAM) to manage and deploy your serverless applications.
+
+In addition to making Application Composer available in your IDE, you can create generative AI powered code suggestions in the CloudFormation template in real time while visualizing the application architecture in split view. You can pair and synchronize Application Composer’s visualization and CloudFormation template editing side by side in the IDE without context switching between consoles to iterate on their designs. This minimizes hand coding and increase your productivity.
+
+Using AWS Application Composer in Visual Studio Code
+First, I need to install the latest AWS Toolkit for Visual Studio Code plugin. If you already have the AWS Toolkit plugin installed, you only need to update the plugin to start using Application Composer.
+
+To start using Application Composer, I don’t need to authenticate into my AWS account. With Application Composer available on my IDE, I can open my existing AWS CloudFormation or AWS SAM templates.
+
+
+
+Another method is to create a new blank file, then right-click on the file and select Open with Application Composer to start designing my application visually.
+
+
+
+This will provide me with a blank canvas. Here I have both code and visual editors at the same time to build a simple serverless API using Amazon API Gateway, AWS Lambda, and Amazon DynamoDB. Any changes that I make on the canvas will also be reflected in real time on my IaC template.
+
+
+
+I get consistent experiences, such as when I use the Application Composer console. For example, if I make some modifications to my AWS Lambda function, it will also create relevant files in my local folder.
+
+
+
+With IaC templates available in my local folder, it’s easier for me to manage my applications with AWS SAM CLI. I can create continuous integration and continuous delivery (CI/CD) with sam pipeline or deploy my stack with sam deploy.
+
+
+
+One of the features that accelerates my development workflow is the built-in Sync feature that seamlessly integrates with AWS SAM command sam sync. This feature syncs my local application changes to my AWS account, which is helpful for me to do testing and validation before I deploy my applications into a production environment.
+
+
+
+Developing IaC templates with generative AI
+With this new capability, I can use generative AI code suggestions to quickly get started with any of CloudFormation’s 1000+ resources. This also means that it’s now even easier to include standard IaC resources to extend my architecture.
+
+For example, I need to use Amazon MQ, which is a standard IaC resource, and I need to modify some configurations for its AWS CloudFormation resource using Application Composer. In the Resource configuration section, change some values if needed, then choose Generate. Application Composer provides code suggestions that I can accept and incorporate into my IaC template.
+
+
+
+This capability helps me to improve my development velocity by eliminating context switching. I can design my modern applications using AWS Application Composer canvas and use various tools such as Amazon CodeWhisperer and AWS SAM to accelerate my development workflow.
+
+Things to know
+Here are a couple of things to note:
+
+Supported IDE – At launch, this new capability is available for Visual Studio Code.
+
+Pricing – The IDE extension for AWS Application Composer is available at no charge.
+
+Get started with IDE extension for AWS Application Composer by installing the latest AWS Toolkit for Visual Studio Code.
+
+Happy coding!
+— Donnie
+
+Donnie Prakoso

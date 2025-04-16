@@ -1,0 +1,4 @@
+Amazon Q Business adds support to extract insights from visual elements within documents
+Amazon Q Business is a fully managed, generative AI–powered assistant that can answer questions, provide summaries, generate content, and securely complete tasks based on data and information in your enterprise systems. Amazon Q Business now offers capabilities to answer questions and extract insights from visual elements embedded within documents.
+
+This new feature enables users to query information embedded in various types of visual, including diagrams, infographics, charts, and image-based content. With this launch, customers can now uncover valuable insights that are captured within visual content embedded in documents including PDF, Microsoft PowerPoint and Word, and Google Docs and Google Slides. Amazon Q Business provides transparency by surfacing the specific images utilized to generate the responses, enabling users to contextualize the extracted information.

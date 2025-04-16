@@ -1,0 +1,22 @@
+Introducing multi-agent collaboration capability for Amazon Bedrock (preview)
+
+Today, we’re announcing the multi-agent collaboration capability for Amazon Bedrock (preview). With multi-agent collaboration, you can build, deploy, and manage multiple AI agents working together on complex multi-step tasks that require specialized skills.
+
+When you need more than a single agent to handle a complex task, you can create additional specialized agents to address different aspects of the process. However, managing these agents becomes technically challenging as tasks grow in complexity. As a developer using open source solutions, you may find yourself navigating the complexities of agent orchestration, session handling, memory management, and other technical aspects that require manual implementation.
+
+With the fully managed multi-agent collaboration capability on Amazon Bedrock, specialized agents work within their domains of expertise, coordinated by a supervisor agent. The supervisor breaks down requests, delegates tasks, and consolidates outputs into a final response. For example, an investment advisory multi-agent system might include agents specialized in financial data analysis, research, forecasting, and investment recommendations. Similarly, a retail operations multi-agent system could handle demand forecasting, inventory allocation, supply chain coordination, and pricing optimization.
+
+Amazon Bedrock Agents manages the collaboration, communication, and task delegation behind the scenes. By enabling agents to work together, you can achieve higher task success rates, accuracy, and enhanced productivity. In internal benchmark testing, multi-agent collaboration has shown marked improvements compared to single-agent systems for handling complex, multi-step tasks.
+
+Highlights of multi-agent collaboration in Amazon Bedrock
+A key challenge in building eﬀective multi-agent collaboration systems is managing the complexity and overhead of coordinating multiple specialized agents at scale. Amazon Bedrock simplifies the process of building, deploying, and orchestrating effective multi-agent collaboration systems while addressing efficiency challenges through several key features and optimizations:
+
+Quick setup – Create, deploy, and manage AI agents working together in minutes without the need for complex coding.
+Composability – Integrate your existing agents as subagents within a larger agent system, allowing them to seamlessly work together to tackle complex workflows.
+Efficient inter-agent communication – The supervisor agent can interact with subagents using a consistent interface, supporting parallel communication for more efficient task completion.
+Optimized collaboration modes – Choose between supervisor mode and supervisor with routing mode. With routing mode, the supervisor agent will route simple requests directly to specialized subagents, bypassing full orchestration. For complex queries or when no clear intention is detected, it automatically falls back to the full supervisor mode, where the supervisor agent analyzes, breaks down problems, and coordinates multiple subagents as needed.
+Integrated trace and debug console – Visualize and analyze multi-agent interactions behind the scenes using the integrated trace and debug console.
+These features collectively improve coordination capabilities, communication speed, and overall effectiveness of the multi-agent collaboration framework in tackling complex, real-world problems.
+
+During preview, multi-agent collaboration supports real-time chat assistant (synchronous) use cases.
+Subagents can have collaboration enabled themselves with an overall soft limit of three hierarchical agent team layers.

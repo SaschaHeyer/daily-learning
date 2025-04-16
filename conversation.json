@@ -1,0 +1,78 @@
+[
+    {
+        "speaker": "Host",
+        "text": "Hey everyone and welcome back to the show! Today, \u00e4h, we're diving deep into the fascinating world of reranking with my amazing guest, Sascha Heyer!"
+    },
+    {
+        "speaker": "Guest",
+        "text": "Hey there! Thanks for having me. It's great to be here."
+    },
+    {
+        "speaker": "Host",
+        "text": "So Sascha, for our listeners who might not be familiar, can you explain what reranking actually is in simple terms?"
+    },
+    {
+        "speaker": "Guest",
+        "text": "Absolutely! Imagine searching for something in a huge library. You get a pile of books, right? But only a few pages are actually useful. Reranking is like having a super-powered librarian who magically puts the most relevant pages right on top!"
+    },
+    {
+        "speaker": "Host",
+        "text": "Wow, that's a fantastic analogy! So it's like a second layer of filtering for search results, focusing on contextual relevance, not just semantic similarity?"
+    },
+    {
+        "speaker": "Guest",
+        "text": "Exactly!  A regular search might find things that are similar in meaning, but reranking makes sure we get the most relevant results for a specific question.  It's super important for things like RAG systems, you know, Retrieval Augmented Generation."
+    },
+    {
+        "speaker": "Host",
+        "text": "Right, RAG.  So the quality of the information fed to the language model is crucial, and reranking ensures we provide only the best, most relevant information, reducing noise and hallucinations?"
+    },
+    {
+        "speaker": "Guest",
+        "text": "Precisely! We want to give the LLM only the best bits. Less noise, less chance of getting a weird, wrong answer.  It's all about improving precision."
+    },
+    {
+        "speaker": "Host",
+        "text": "Amazing! And you use Google's Ranking API, right?  Any other options out there?"
+    },
+    {
+        "speaker": "Guest",
+        "text": "Yeah, Google's is great, but there are others too! Cohere, Voyage AI, even some open-source solutions on Hugging Face. Lots of choices!"
+    },
+    {
+        "speaker": "Host",
+        "text": "That's great to know!  Now, are there any limitations we should be aware of when using a reranker?"
+    },
+    {
+        "speaker": "Guest",
+        "text": "Sure.  Token limits are a big one. Google's model handles up to 512 tokens.  And there's a limit on the number of records you can send in a request. Plus, there's a bit of latency; it adds some time to the process."
+    },
+    {
+        "speaker": "Host",
+        "text": "Okay, good to know. What about the cost? Is it expensive to use a reranker?"
+    },
+    {
+        "speaker": "Guest",
+        "text": "Not too bad, actually! Google's API is about a dollar per thousand queries.  Pretty reasonable considering the improvement in results."
+    },
+    {
+        "speaker": "Host",
+        "text": "So, the final verdict: Should we be using rerankers?"
+    },
+    {
+        "speaker": "Guest",
+        "text": "Absolutely!  It's a small effort for a big improvement.  It makes our LLMs much better at giving us the right answers."
+    },
+    {
+        "speaker": "Host",
+        "text": "Fantastic! Thanks so much for sharing your expertise, Sascha.  Where can people find out more about your work?"
+    },
+    {
+        "speaker": "Guest",
+        "text": "You can find me on LinkedIn, YouTube, Twitch, even Kick!  My GitHub repo has all the code from today's discussion."
+    },
+    {
+        "speaker": "Host",
+        "text": "Perfect!  Thanks again, everyone, for tuning in!"
+    }
+]

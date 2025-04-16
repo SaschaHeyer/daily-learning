@@ -1,0 +1,24 @@
+AWS re:Invent : What to expect and how to watch Amazon’s biggest event of the year
+
+Amazon Web Services’ (AWS) biggest conference of the year is around the corner, and all signs point to it being an eventful one. AWS re:Invent  kicks off in Las Vegas on Sunday, with sessions scheduled to run through December 6. A keynote address featuring AWS CEO Matt Garman will take place December 3, starting at 8 a.m. PT sharp.
+
+AWS plans to make a livestream of the keynote available on YouTube, and we’ll be covering everything that’s announced onstage. Keep your eyes peeled for that, as well as for our stories popping up throughout the course of re:Invent.
+
+Notably, this is Garman’s first re:Invent as AWS’ CEO. His predecessor, Adam Selipsky, stepped down in May after just three years at the helm.
+
+So what can we expect?
+
+
+In another win, AWS just weeks ago shored up its partnership with Anthropic by becoming the AI company’s primary model training partner and by agreeing to have Anthropic’s team help guide its future AI chip design efforts.
+
+But AWS has also faced setbacks, like the departure of top AI exec Matt Wood and delays of its flagship Olympus model.
+
+Garman will almost certainly talk about generative AI during his keynote. (The re:Invent catalog lists over 500 generative AI-related sessions.) But he told TechCrunch in October that re:Invent wouldn’t be “just an AI conference” this year.
+
+“I think we’re going to have innovations across the stack in compute and storage and databases and analytics and AI,” he said in an interview. “It’s going to be across the whole stack of AWS.”
+
+Expect a cameo from Amazon CEO Andy Jassy during Garman’s keynote, the theme of which Amazon rather bombastically describes as “highlighting how AWS is reinventing foundational building blocks as well as developing new experiences to empower customers and partners with what they need to build a better future.”
+
+AWS VP Swami Sivasubramanian will give an AI- and data-focused presentation on new AWS services on December 4. And December 5, Amazon CTO Werner Vogels will dive deep into his tech predictions for the coming year — a longtime regular fixture of re:Invent.
+
+Sivasubramanian and Vogels’ speeches, like Garman’s, will be streamed on YouTube — and we’ll be covering them right here on TechCrunch.

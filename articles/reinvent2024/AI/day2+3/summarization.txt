@@ -1,0 +1,242 @@
+Nova
+
+Introducing Amazon Nova: Frontier intelligence and industry leading price performance
+
+Today, we’re thrilled to announce Amazon Nova, a new generation of state-of-the-art foundation models (FMs) that deliver frontier intelligence and industry leading price performance, available exclusively in Amazon Bedrock.
+
+You can use Amazon Nova to lower costs and latency for almost any generative AI task. You can build on Amazon Nova to analyze complex documents and videos, understand charts and diagrams, generate engaging video content, and build sophisticated AI agents, from across a range of intelligence classes optimized for enterprise workloads.
+
+Whether you’re developing document processing applications that need to process images and text, creating marketing content at scale, or building AI assistants that can understand and act on visual information, Amazon Nova provides the intelligence and flexibility you need with two categories of models: understanding and creative content generation.
+
+Amazon Nova understanding models accept text, image, or video inputs to generate text output. Amazon creative content generation models accept text and image inputs to generate image or video output.
+
+Understanding models: Text and visual intelligence
+The Amazon Nova models include three understanding models (with a fourth one coming soon) designed to meet different needs:
+
+Amazon Nova Micro – A text-only model that delivers the lowest latency responses in the Amazon Nova family of models at a very low cost. With a context length of 128K tokens and optimized for speed and cost, Amazon Nova Micro excels at tasks such as text summarization, translation, content classification, interactive chat and brainstorming, and simple mathematical reasoning and coding. Amazon Nova Micro also supports customization on proprietary data using fine-tuning and model distillation to boost accuracy.
+
+Amazon Nova Lite – A very low-cost multimodal model that is lightning fast for processing image, video, and text inputs to generate text output. Amazon Nova Lite can handle real-time customer interactions, document analysis, and visual question-answering tasks with high accuracy. The model processes inputs up to 300K tokens in length and can analyze multiple images or up to 30 minutes of video in a single request. Amazon Nova Lite also supports text and multimodal fine-tuning and can be optimized to deliver the best quality and costs for your use case with techniques such as model distillation.
+
+Amazon Nova Pro – A highly capable multimodal model with the best combination of accuracy, speed, and cost for a wide range of tasks. Amazon Nova Pro is capable of processing up to 300K input tokens and sets new standards in multimodal intelligence and agentic workflows that require calling APIs and tools to complete complex workflows. It achieves state-of-the-art performance on key benchmarks including visual question answering (TextVQA) and video understanding (VATEX). Amazon Nova Pro demonstrates strong capabilities in processing both visual and textual information and excels at analyzing financial documents. With an input context of 300K tokens, it can process code bases with over fifteen thousand lines of code. Amazon Nova Pro also serves as a teacher model to distill custom variants of Amazon Nova Micro and Lite.
+
+Amazon Nova Premier – Our most capable multimodal model for complex reasoning tasks and for use as the best teacher for distilling custom models. Amazon Nova Premier is still in training. We’re targeting availability in early 2025.
+
+Amazon Nova understanding models excel in Retrieval-Augmented Generation (RAG), function calling, and agentic applications. This is reflected in Amazon Nova model scores in the Comprehensive RAG Benchmark (CRAG) evaluation, Berkeley Function Calling Leaderboard (BFCL), VisualWebBench, and Mind2Web.
+
+What makes Amazon Nova particularly powerful for enterprises is its customization capabilities. Think of it as tailoring a suit: you start with a high-quality foundation and adjust it to fit your exact needs. You can fine-tune the models with text, image, and video to understand your industry’s terminology, align with your brand voice, and optimize for your specific use cases. For instance, a legal firm might customize Amazon Nova to better understand legal terminology and document structures.
+
+You can see the latest benchmark scores for these models on the Amazon Nova product page.
+
+Creative content generation: Bringing concepts to life
+The Amazon Nova models also include two creative content generation models:
+
+Amazon Nova Canvas – A state-of-the-art image generation model producing studio-quality images with precise control over style and content, including rich editing features such as inpainting, outpainting, and background removal. Amazon Nova Canvas excels on human evaluations and key benchmarks such as text-to-image faithfulness evaluation with question answering (TIFA) and ImageReward.
+
+Amazon Nova Reel – A state-of-the-art video generation model. Using Amazon Nova Reel, you can produce short videos through text prompts and images, control visual style and pacing, and generate professional-quality video content for marketing, advertising, and entertainment. Amazon Nova Reel outperforms existing models on human evaluations of video quality and video consistency.
+
+All Amazon Nova models include built-in safety controls and creative content generation models include watermarking capabilities to promote responsible AI use.
+
+Building AI responsibly
+Amazon Nova models are built with a focus on customer safety, security, and trust throughout the model development stages, offering you peace of mind as well as an adequate level of control to enable your unique use cases.
+
+We’ve built in comprehensive safety features and content moderation capabilities, giving you the controls you need to use AI responsibly. Every generated image and video include digital watermarking.
+
+The Amazon Nova foundation models are built with protections that match its increased capabilities. Amazon Nova extends our safety measures to combat the spread of misinformation, child sexual abuse material (CSAM), and chemical, biological, radiological, or nuclear (CBRN) risks.
+
+Things to know
+Amazon Nova models are available in Amazon Bedrock in the US East (N. Virginia) AWS region. Amazon Nova Micro, Lite, and Pro are also available in the US West (Oregon), and US East (Ohio) regions via cross-Region inference. As usual with Amazon Bedrock, the pricing follows a pay-as-you-go model. For more information, see Amazon Bedrock pricing.
+
+The new generation of Amazon Nova understanding models speaks your language. These models understand and generate content in over 200 languages, with particularly strong capabilities in English, German, Spanish, French, Italian, Japanese, Korean, Arabic, Simplified Chinese, Russian, Hindi, Portuguese, Dutch, Turkish, and Hebrew. This means you can build truly global applications without worrying about language barriers or maintaining separate models for different regions. Amazon Nova models for creative content generation support English prompts.
+
+As you explore Amazon Nova, you’ll discover its ability to handle increasingly complex tasks. You can use these models to process lengthy documents up to 300K tokens, analyze multiple images in a single request, understand up to 30 minutes of video content, and generate images and videos at scale from natural language. This makes these models suitable for a variety of business use cases, from quick customer service interactions to deep analysis of corporate documentation and asset creation for advertising, ecommerce, and social media applications.
+
+Integration with Amazon Bedrock makes deployment and scaling straightforward. You can leverage features like Amazon Bedrock Knowledge Bases to enhance your model with proprietary information, use Amazon Bedrock Agents to automate complex workflows, and implement Amazon Bedrock Guardrails to promote responsible AI use. The platform supports real-time streaming for interactive applications, batch processing for high-volume workloads, and detailed monitoring to help you optimize performance.
+
+
+
+ Bedrock APIs
+
+New APIs in Amazon Bedrock to enhance RAG applications, now available
+
+Amazon Bedrock is a fully managed service that offers a choice of high-performing foundation models (FMs) from leading AI companies like AI21 Labs, Anthropic, Cohere, Meta, Mistral AI, Stability AI, and Amazon through a single API, along with a broad set of capabilities you need to build generative AI applications with security, privacy, and responsible AI. Amazon Bedrock Knowledge Bases is a fully managed service that empowers developers to create highly accurate, low latency, secure, and customizable generative AI applications cost effectively. Amazon Bedrock Knowledge Bases connects foundation models (FMs) to a company’s internal data using Retrieval Augmented Generation (RAG). RAG helps FMs deliver more relevant, accurate, and customized responses.
+
+In this post, we detail two announcements related to Amazon Bedrock Knowledge Bases:
+
+Support for custom connectors and ingestion of streaming data.
+Support for reranking models.
+Support for custom connectors and ingestion of streaming data
+Today, we announced support for custom connectors and ingestion of streaming data in Amazon Bedrock Knowledge Bases. Developers can now efficiently and cost-effectively ingest, update, or delete data directly using a single API call, without the need to perform a full sync with the data source periodically or after every change. Customers are increasingly developing RAG-based generative AI applications for various use cases such as chatbots and enterprise search. However, they face challenges in keeping the data up-to-date in their knowledge bases so that the end users of the applications always have access to the latest information. The current process of data synchronization is time-consuming, requiring a full sync every time new data is added or removed. Customers also face challenges in integrating data from unsupported sources, such as Google Drive or Quip, into their knowledge base. Typically, to make this data available in Amazon Bedrock Knowledge Bases, they must first move it to a supported source, such as Amazon Simple Storage Service (Amazon S3), and then start the ingestion process. This extra step not only creates additional overhead but also introduces delays in making the data accessible for querying. Additionally, customers who want to use streaming data (for example, news feeds or Internet of Things (IoT) sensor data) face delays in real-time data availability due to the need to store the data in a supported data source before ingestion. As customers scale up their data, these inefficiencies and delays can become significant operational bottlenecks and increase costs. Keeping all these challenges in mind, it’s important to have a more efficient and cost-effective way to ingest and manage data from various sources to ensure that the knowledge base is up-to-date and available for querying in real-time. With support for custom connector and ingestion of streaming data, customers can now use direct APIs to efficiently add, check the status of, and delete data, without the need to list and sync the entire dataset.
+
+Support for reranking models
+Today we also announced the new Rerank API in Amazon Bedrock to offer developers a way to use reranking models to enhance the performance of their RAG-based applications by improving the relevance and accuracy of responses. Semantic search, supported by vector embeddings, embeds documents and queries into a semantic high-dimension vector space where texts with related meanings are nearby in the vector space and therefore semantically similar, so that it returns similar items even if they don’t share any words with the query. Semantic search is used in RAG applications because the relevance of retrieved documents to a user’s query plays a critical role in providing accurate responses and RAG applications retrieve a range of relevant documents from the vector store.
+
+However, semantic search has limitations in prioritizing the most suitable documents based on user preferences or query context especially when the user query is complex, ambiguous, or involves nuanced context. This can lead to retrieving documents that are only partially relevant to the user’s question. This leads to another challenge where proper citation and attribution of sources is not attributed to the correct sources, leading to loss of trust and transparency in the RAG-based application. To address these limitations, future RAG systems should prioritize developing robust ranking algorithms that can better understand user intent and context. Additionally, it is important to focus on improving source credibility assessment and citation practices to confirm the reliability and transparency of the generated responses.
+
+Advanced reranking models solve for these challenges by prioritizing the most relevant content from a knowledge base for a query and additional context to ensure that foundation models receive the most relevant content, which leads to more accurate and contextually appropriate responses. Reranking models may reduce response generation costs by prioritizing the information that is sent to the generation model.
+
+ Automated Reasoning
+
+Prevent factual errors from LLM hallucinations with mathematically sound Automated Reasoning checks
+
+Today, we’re adding Automated Reasoning checks (preview) as a new safeguard in Amazon Bedrock Guardrails to help you mathematically validate the accuracy of responses generated by large language models (LLMs) and prevent factual errors from hallucinations.
+
+Amazon Bedrock Guardrails lets you implement safeguards for generative AI applications by filtering undesirable content, redacting personal identifiable information (PII), and enhancing content safety and privacy. You can configure policies for denied topics, content filters, word filters, PII redaction, contextual grounding checks, and now Automated Reasoning checks.
+
+Automated Reasoning checks help prevent factual errors from hallucinations using sound mathematical, logic-based algorithmic verification and reasoning processes to verify the information generated by a model, so outputs align with known facts and aren’t based on fabricated or inconsistent data.
+
+Amazon Bedrock Guardrails is the only responsible AI capability offered by a major cloud provider that helps customers to build and customize safety, privacy, and truthfulness for their generative AI applications within a single solution.
+
+Primer on automated reasoning
+Automated reasoning is a field of computer science that uses mathematical proofs and logical deduction to verify the behavior of systems and programs. Automated reasoning differs from machine learning (ML), which makes predictions, in that it provides mathematical guarantees about a system’s behavior. Amazon Web Services (AWS) already uses automated reasoning in key service areas such as storage, networking, virtualization, identity, and cryptography. For example, automated reasoning is used to formally verify the correctness of cryptographic implementations, improving both performance and development speed. To learn more, check out Provable Security and the Automated reasoning research area in the Amazon Science Blog.
+
+Now AWS is applying a similar approach to generative AI. The new Automated Reasoning checks (preview) in Amazon Bedrock Guardrails is the first and only generative AI safeguard that helps prevent factual errors due to hallucinations using logically accurate and verifiable reasoning that explains why generative AI responses are correct. Automated Reasoning checks are particularly useful for use cases where factual accuracy and explainability are important. For example, you could use Automated Reasoning checks to validate LLM-generated responses about human resources (HR) policies, company product information, or operational workflows.
+
+Used alongside other techniques such as prompt engineering, Retrieval-Augmented Generation (RAG), and contextual grounding checks, Automated Reasoning checks add a more rigorous and verifiable approach to making sure that LLM-generated output is factually accurate. By encoding your domain knowledge into structured policies, you can have confidence that your conversational AI applications are providing reliable and trustworthy information to your users.
+
+Using Automated Reasoning checks (preview) in Amazon Bedrock Guardrails
+With Automated Reasoning checks in Amazon Bedrock Guardrails, you can create Automated Reasoning policies that encode your organization’s rules, procedures, and guidelines into a structured, mathematical format. These policies can then be used to verify that the content generated by your LLM-powered applications is consistent with your guidelines.
+
+Automated Reasoning policies are composed of a set of variables, defined with a name, type, and description, and the logical rules that operate on the variables. Behind the scenes, rules are expressed in formal logic, but they’re translated to natural language to make it easier for a user without formal logic expertise to refine a model. Automated Reasoning checks uses the variable descriptions to extract their values when validating a Q&A.
+
+Create Automated Reasoning policies
+Using the Amazon Bedrock console, you can upload documents that describe your organization’s rules and procedures. Amazon Bedrock will analyze these documents and automatically create an initial Automated Reasoning policy, which represents the key concepts and their relationships in a mathematical format.
+
+Navigate to the new Automated Reasoning menu item in Safeguards. Create a new policy and give it a name. Upload an existing document that defines the right solution space, such as an HR guideline or an operational manual. For this demo, I’m using an example airline ticket policy document that includes the airline’s policies for ticket changes.
+
+Then, define the policy’s intent and any processing parameters. For example, specify if it will validate airport staff inquiries and identify any elements to exclude from processing, such as internal reference numbers. Include one or more sample Q&As to help the system understand typical interactions.
+
+Test Automated Reasoning checks
+You can use the Test playground in the Automated Reasoning console to verify the effectiveness of your Automated Reasoning policy. Enter a test question just like a user of your application would, together with an example answer to validate.
+
+When the validation result is invalid, the suggestions show a set of variable assignments that would make the conclusion valid. In my scenario, the suggestions show that the change submission method needs to be email for the validation result to be valid.
+
+If no factual inaccuracies are detected and the validation result is Valid, suggestions show a list of assignments that are necessary for the result to hold; these are unstated assumptions in the answer. In my scenario, this might be assumptions such as that it’s the original ticket on which name corrections must be made or that the type of ticket stock is eligible for changes.
+
+If factual inconsistencies are detected, the console will display Mixed results as the validation result. In the API response, you will see a list of findings, with some marked as valid and others as invalid. If this happens, review the system’s findings and suggestions and edit any unclear policy rules.
+
+You can also use the validation results to enhance LLM-generated responses based on the feedback. For example, the following code snippet demonstrates how you can ask the model to regenerate its answer based on the received feedback:
+
+Achieving high validation accuracy is an iterative process. As a best practice, regularly review policy performance and adjust it as needed. You can edit rules in natural language and the system will automatically update the logical model.
+
+For example, updating variable descriptions can significantly improve validation accuracy. Consider a scenario where a question states, “I’m a full-time employee…,” and the description of the is_full_time variable only states, “works more than 20 hours per week.” In this case, Automated Reasoning checks might not recognize the phrase “full-time.” To enhance accuracy, you should update the variable description to be more comprehensive, such as: “Works more than 20 hours per week. Users may refer to this as full-time or part-time. The value should be true for full-time and false for part-time.” This detailed description helps the system pick up all relevant factual claims for validation in natural language questions and answers, providing more accurate results.
+
+ Bedrock evaluation
+
+New RAG evaluation and LLM-as-a-judge capabilities in Amazon Bedrock
+
+Today, we’re announcing two new evaluation capabilities in Amazon Bedrock that can help you streamline testing and improve generative AI applications:
+
+Amazon Bedrock Knowledge Bases now supports RAG evaluation (preview) – You can now run an automatic knowledge base evaluation to assess and optimize Retrieval Augmented Generation (RAG) applications using Amazon Bedrock Knowledge Bases. The evaluation process uses a large language model (LLM) to compute the metrics for the evaluation. With RAG evaluations, you can compare different configurations and tune your settings to get the results you need for your use case.
+
+Amazon Bedrock Model Evaluation now includes LLM-as-a-judge (preview) – You can now perform tests and evaluate other models with humanlike quality at a fraction of the cost and time of running human evaluations.
+
+These new capabilities make it easier to go into production by providing fast, automated evaluation of AI-powered applications, shortening feedback loops and speeding up improvements. These evaluations assess multiple quality dimensions including correctness, helpfulness, and responsible AI criteria such as answer refusal and harmfulness.
+
+To make it easy and intuitive, the evaluation results provide natural language explanations for each score in the output and on console, and the scores are normalized from 0 to 1 for ease of interpretability. Rubrics are published in full with the judge prompts in the documentation so non-scientists can understand how scores are derived.
+
+ Bedrock Latency
+
+Introducing latency-optimized inference for foundation models in Amazon Bedrock
+
+Latency-optimized inference for foundation models in Amazon Bedrock now available in public preview, delivering faster response times and improved responsiveness for AI applications. Currently, these new inference options support Anthropic's Claude 3.5 Haiku model and Meta's Llama 3.1 405B and 70B models offering reduced latency compared to standard models without compromising accuracy. As verified by Anthropic, with latency-optimized inference in Amazon Bedrock, Claude 3.5 Haiku runs faster on AWS than anywhere else. Additionally, with latency-optimized inference in Bedrock, Llama 3.1  405B and 70B runs faster on AWS than any other major cloud provider.
+As more customers move their generative AI applications to production, optimizing the end-user experience becomes crucial, particularly for latency-sensitive applications such as real-time customer service chatbots and interactive coding assistants. Using purpose-built AI chips like AWS Trainium2 and advanced software optimizations in Amazon Bedrock, customers can access more options to optimize their inference for a particular use case. Accessing these capabilities requires no additional setup or model fine-tuning, allowing for immediate enhancement of existing applications with faster response times.
+
+ Bedrock Model Distillation
+
+Build faster, more cost-efficient, highly accurate models with Amazon Bedrock Model Distillation (preview)
+
+Today, we’re announcing the availability of Amazon Bedrock Model Distillation in preview that automates the process of creating a distilled model for your specific use case by generating responses from a large foundation model (FM) called a teacher model and fine-tunes a smaller FM called a student model with the generated responses. It uses data synthesis techniques to improve response from a teacher model. Amazon Bedrock then hosts the final distilled model for inference giving you a faster and more cost-efficient model with accuracy close to the teacher model, for your use case.
+
+Customers are excited to use the most powerful and accurate FMs on Amazon Bedrock for their generative AI applications. But for some use cases, the latency associated with these models isn’t ideal. In addition, customers are looking for better price performance as they scale their generative AI applications to many billions of user interactions. To reduce latency and be more cost-efficient for their use case, customers are turning to smaller models. However, for some use cases, smaller models can’t provide optimal accuracy. Fine-tuning models requires an additional skillset to create the high-quality labeled datasets to increase model accuracy for customer’s use cases.
+
+With Amazon Bedrock Model Distillation, you can increase the accuracy of a smaller-sized student model to mimic a higher-performance teacher model with the process of knowledge transfer. You can create distilled models that for a certain use case, are up to five times faster and up to 75 percent less expensive than original large models, with less than two percent accuracy loss for use cases such as Retrieval Augmented Generation (RAG), by transferring knowledge from a teacher model of your choice to a student model in the same family.
+
+Amazon Bedrock employs various data synthesis techniques to enhance response generation from the teacher model and create high-quality fine-tuning datasets. These techniques are tailored to specific use cases. For instance, Amazon Bedrock may augment the training dataset by generating similar prompts, effectively increasing the volume of the fine-tuning dataset.
+
+Alternatively, it can produce high-quality teacher responses by using provided prompt-response pairs as golden examples. At preview, Amazon Bedrock Model Distillation supports Anthropic, Meta, and Amazon models.
+
+Next, when using Amazon Bedrock Model Distillation, select a teacher model whose accuracy you want to aim for your use case and a student model that you want to fine-tune. Then give access to Amazon Bedrock to read your invocation logs. Here, you can specify the request metadata filters so that only specific logs, which are valid for your use case, are read to fine-tune the student model. The teacher model selected for distillation and the model used in the invocation logs must be the same if you want Amazon Bedrock to reuse the responses from invocation logs.
+
+Things to know
+Here are a few important things to know.
+
+Model distillation aims to increase the accuracy of the student model to match the performance of the teacher model for your specific use case. Before you begin model distillation, we recommend that you evaluate different teacher models for your use case and select the teacher model that works well for your use case.
+We recommend optimizing your prompts for your use case against which you find the teacher model accuracy to be acceptable. Submit these prompts as the distillation input data.
+To choose a corresponding student model to fine-tune, evaluate the latency profiles of different student model options for your use case. The final distilled model will have the same latency profile as the student model that you select.
+If a specific student model already performs well for your use case, then we recommend using the student model as is instead of creating a distilled model.
+
+ Bedrock Multi Agents
+
+Introducing multi-agent collaboration capability for Amazon Bedrock (preview)
+
+Today, we’re announcing the multi-agent collaboration capability for Amazon Bedrock (preview). With multi-agent collaboration, you can build, deploy, and manage multiple AI agents working together on complex multi-step tasks that require specialized skills.
+
+When you need more than a single agent to handle a complex task, you can create additional specialized agents to address different aspects of the process. However, managing these agents becomes technically challenging as tasks grow in complexity. As a developer using open source solutions, you may find yourself navigating the complexities of agent orchestration, session handling, memory management, and other technical aspects that require manual implementation.
+
+With the fully managed multi-agent collaboration capability on Amazon Bedrock, specialized agents work within their domains of expertise, coordinated by a supervisor agent. The supervisor breaks down requests, delegates tasks, and consolidates outputs into a final response. For example, an investment advisory multi-agent system might include agents specialized in financial data analysis, research, forecasting, and investment recommendations. Similarly, a retail operations multi-agent system could handle demand forecasting, inventory allocation, supply chain coordination, and pricing optimization.
+
+Amazon Bedrock Agents manages the collaboration, communication, and task delegation behind the scenes. By enabling agents to work together, you can achieve higher task success rates, accuracy, and enhanced productivity. In internal benchmark testing, multi-agent collaboration has shown marked improvements compared to single-agent systems for handling complex, multi-step tasks.
+
+Highlights of multi-agent collaboration in Amazon Bedrock
+A key challenge in building eﬀective multi-agent collaboration systems is managing the complexity and overhead of coordinating multiple specialized agents at scale. Amazon Bedrock simplifies the process of building, deploying, and orchestrating effective multi-agent collaboration systems while addressing efficiency challenges through several key features and optimizations:
+
+Quick setup – Create, deploy, and manage AI agents working together in minutes without the need for complex coding.
+Composability – Integrate your existing agents as subagents within a larger agent system, allowing them to seamlessly work together to tackle complex workflows.
+Efficient inter-agent communication – The supervisor agent can interact with subagents using a consistent interface, supporting parallel communication for more efficient task completion.
+Optimized collaboration modes – Choose between supervisor mode and supervisor with routing mode. With routing mode, the supervisor agent will route simple requests directly to specialized subagents, bypassing full orchestration. For complex queries or when no clear intention is detected, it automatically falls back to the full supervisor mode, where the supervisor agent analyzes, breaks down problems, and coordinates multiple subagents as needed.
+Integrated trace and debug console – Visualize and analyze multi-agent interactions behind the scenes using the integrated trace and debug console.
+These features collectively improve coordination capabilities, communication speed, and overall effectiveness of the multi-agent collaboration framework in tackling complex, real-world problems.
+
+During preview, multi-agent collaboration supports real-time chat assistant (synchronous) use cases.
+Subagents can have collaboration enabled themselves with an overall soft limit of three hierarchical agent team layers.
+
+ Amazon Q Business Visuals
+
+Amazon Q Business adds support to extract insights from visual elements within documents
+Amazon Q Business is a fully managed, generative AI–powered assistant that can answer questions, provide summaries, generate content, and securely complete tasks based on data and information in your enterprise systems. Amazon Q Business now offers capabilities to answer questions and extract insights from visual elements embedded within documents.
+
+This new feature enables users to query information embedded in various types of visual, including diagrams, infographics, charts, and image-based content. With this launch, customers can now uncover valuable insights that are captured within visual content embedded in documents including PDF, Microsoft PowerPoint and Word, and Google Docs and Google Slides. Amazon Q Business provides transparency by surfacing the specific images utilized to generate the responses, enabling users to contextualize the extracted information.
+
+ Sagemaker Next Generation
+
+Introducing the next generation of Amazon SageMaker: The center for all your data, analytics, and AI
+
+Today, we’re announcing the next generation of Amazon SageMaker, a unified platform for data, analytics, and AI. The all-new SageMaker includes virtually all of the components you need for data exploration, preparation and integration, big data processing, fast SQL analytics, machine learning (ML) model development and training, and generative AI application development.
+
+The current Amazon SageMaker has been renamed to Amazon SageMaker AI. SageMaker AI is integrated within the next generation of SageMaker while also being available as a standalone service for those who wish to focus specifically on building, training, and deploying AI and ML models at scale.
+
+Highlights of the new Amazon SageMaker
+At its core is SageMaker Unified Studio (preview), a single data and AI development environment. It brings together functionality and tools from the range of standalone “studios,” query editors, and visual tools that we have today in Amazon Athena, Amazon EMR, AWS Glue, Amazon Redshift, Amazon Managed Workflows for Apache Airflow (MWAA), and the existing SageMaker Studio. We’ve also integrated Amazon Bedrock IDE (preview), an updated version of Amazon Bedrock Studio, to build and customize generative AI applications. In addition, Amazon Q provides AI assistance throughout your workflows in SageMaker.
+
+Here’s a list of key capabilities:
+
+Amazon SageMaker Unified Studio (preview) – Build with all your data and tools for analytics and AI in a single environment.
+Amazon SageMaker Lakehouse – Unify data across Amazon Simple Storage Service (Amazon S3) data lakes, Amazon Redshift data warehouses, and third-party and federated data sources with Amazon SageMaker Lakehouse.
+Data and AI Governance – Securely discover, govern, and collaborate on data and AI with Amazon SageMaker Catalog, built on Amazon DataZone.
+Data Processing – Analyze, prepare, and integrate data for analytics and AI using open source frameworks on Amazon Athena, Amazon EMR, and AWS Glue.
+Model development – Build, train, and deploy ML and foundation models (FMs) with fully managed infrastructure, tools, and workflows with Amazon SageMaker AI.
+Generative AI app development – Build and scale generative AI applications with Amazon Bedrock.
+SQL analytics – Gain insights with Amazon Redshift, the most price-performant SQL engine.
+In this post, I give you a quick tour of the new SageMaker Unified Studio experience and how to get started with data processing, model development, and generative AI app development.
+
+Working with Amazon SageMaker Unified Studio (preview)
+With SageMaker Unified Studio, you can discover your data and put it to work using familiar AWS tools to complete end-to-end development workflows, including data analysis, data processing, model training, and generative AI app building, in a single governed environment.
+
+An integrated SQL editor lets you query data from multiple sources, and a visual extract, transform, and load (ETL) tool simplifies the creation of data integration and transformation workflows. New unified Jupyter notebooks enable seamless work across different compute services and clusters. With the new built-in data catalog functionality, you can find, access, and query data and AI assets across your organization. Amazon Q is integrated to streamline tasks across the development lifecycle.
+
+Data processing
+SageMaker integrates with SageMaker Lakehouse and lets you analyze, prepare, integrate, and orchestrate your data in a unified experience. You can integrate and process data from various sources using the provided connectivity options.
+
+Start by creating a project in SageMaker Unified Studio, choosing the SQL analytics or data analytics and AI-ML model development project profile. Projects are a place to collaborate with your colleagues, share data, and use tools to work with data in a secure way. Project profiles in SageMaker define the preconfigured set of resources and tools that are provisioned when you create a new project. In your project, choose Data in the left menu and start adding data sources.
+
+Model development
+SageMaker Unified Studio includes capabilities from SageMaker AI, which provides infrastructure, tools, and workflows for the entire ML lifecycle. From the top menu, select Build to access tools for data preparation, model training, experiment tracking, pipeline creation, and orchestration. You can also use these tools for model deployment and inference, machine learning operations (MLOps) implementation, model monitoring and evaluation, as well as governance and compliance.
+
+To start your model development, create a project in SageMaker Unified Studio using the data analytics and AI-ML model development project profile and explore the new unified Jupyter notebooks. In the top menu, select Build and choose JupyterLab. You can use the new unified notebooks to seamlessly work across different compute services and clusters. You can use these notebooks to switch between environments without leaving your workspace, streamlining your model development process.
+
+Generative AI app development
+Use the new Amazon Bedrock IDE to develop generative AI applications within Amazon SageMaker Unified Studio. The Amazon Bedrock IDE includes tools to build and customize generative AI applications using FMs and advanced capabilities such as Amazon Bedrock Knowledge Bases, Amazon Bedrock Guardrails, Amazon Bedrock Agents, and Amazon Bedrock Flows to create tailored solutions aligned with your requirements and responsible AI guidelines.
+
+Choose Discover in the top menu of SageMaker Unified Studio to browse Amazon Bedrock models or experiment with the model playgrounds.
+
+With the Amazon Bedrock IDE, you can build chat agents and create knowledge bases from your proprietary data sources with just a few clicks, enabling Retrieval-Augmented Generation (RAG). You can add guardrails to promote safe AI interactions and create functions to integrate with any system. With built-in model evaluation features, you can test and optimize your AI applications’ performance while collaborating with your team. Design flows for deterministic genAI-powered workflows, and when ready, share your applications or prompts within the domain or export them for deployment anywhere—all while maintaining control of your project and domain assets.

@@ -1,0 +1,7 @@
+flask
+flask-cors
+google-cloud-firestore
+beautifulsoup4 
+requests 
+google-cloud-storage
+vertexai

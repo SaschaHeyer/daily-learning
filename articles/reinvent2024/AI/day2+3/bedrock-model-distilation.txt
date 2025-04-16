@@ -1,0 +1,21 @@
+Build faster, more cost-efficient, highly accurate models with Amazon Bedrock Model Distillation (preview)
+
+Today, we’re announcing the availability of Amazon Bedrock Model Distillation in preview that automates the process of creating a distilled model for your specific use case by generating responses from a large foundation model (FM) called a teacher model and fine-tunes a smaller FM called a student model with the generated responses. It uses data synthesis techniques to improve response from a teacher model. Amazon Bedrock then hosts the final distilled model for inference giving you a faster and more cost-efficient model with accuracy close to the teacher model, for your use case.
+
+Customers are excited to use the most powerful and accurate FMs on Amazon Bedrock for their generative AI applications. But for some use cases, the latency associated with these models isn’t ideal. In addition, customers are looking for better price performance as they scale their generative AI applications to many billions of user interactions. To reduce latency and be more cost-efficient for their use case, customers are turning to smaller models. However, for some use cases, smaller models can’t provide optimal accuracy. Fine-tuning models requires an additional skillset to create the high-quality labeled datasets to increase model accuracy for customer’s use cases.
+
+With Amazon Bedrock Model Distillation, you can increase the accuracy of a smaller-sized student model to mimic a higher-performance teacher model with the process of knowledge transfer. You can create distilled models that for a certain use case, are up to five times faster and up to 75 percent less expensive than original large models, with less than two percent accuracy loss for use cases such as Retrieval Augmented Generation (RAG), by transferring knowledge from a teacher model of your choice to a student model in the same family.
+
+Amazon Bedrock employs various data synthesis techniques to enhance response generation from the teacher model and create high-quality fine-tuning datasets. These techniques are tailored to specific use cases. For instance, Amazon Bedrock may augment the training dataset by generating similar prompts, effectively increasing the volume of the fine-tuning dataset.
+
+Alternatively, it can produce high-quality teacher responses by using provided prompt-response pairs as golden examples. At preview, Amazon Bedrock Model Distillation supports Anthropic, Meta, and Amazon models.
+
+Next, when using Amazon Bedrock Model Distillation, select a teacher model whose accuracy you want to aim for your use case and a student model that you want to fine-tune. Then give access to Amazon Bedrock to read your invocation logs. Here, you can specify the request metadata filters so that only specific logs, which are valid for your use case, are read to fine-tune the student model. The teacher model selected for distillation and the model used in the invocation logs must be the same if you want Amazon Bedrock to reuse the responses from invocation logs.
+
+Things to know
+Here are a few important things to know.
+
+Model distillation aims to increase the accuracy of the student model to match the performance of the teacher model for your specific use case. Before you begin model distillation, we recommend that you evaluate different teacher models for your use case and select the teacher model that works well for your use case.
+We recommend optimizing your prompts for your use case against which you find the teacher model accuracy to be acceptable. Submit these prompts as the distillation input data.
+To choose a corresponding student model to fine-tune, evaluate the latency profiles of different student model options for your use case. The final distilled model will have the same latency profile as the student model that you select.
+If a specific student model already performs well for your use case, then we recommend using the student model as is instead of creating a distilled model.

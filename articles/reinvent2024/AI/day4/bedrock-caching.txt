@@ -1,0 +1,19 @@
+Amazon Bedrock now supports prompt caching – You can now cache frequently used context in prompts across multiple model invocations. This is especially valuable for applications that repeatedly use the same context, such as document Q&A systems where users ask multiple questions about the same document or coding assistants that need to maintain context about code files. The cached context remains available for up to 5 minutes after each access. Prompt caching in Amazon Bedrock can reduce costs by up to 90% and latency by up to 85% for supported models.
+
+These features make it easier to reduce latency and balance performance with cost efficiency. Let’s look at how you can use them in your applications.
+
+You can use prompt caching with the Amazon Bedrock Converse API. When you tag content for caching and send it to the model for the first time, the model processes the input and saves the intermediate results in a cache. For subsequent requests containing the same content, the model loads the preprocessed results from the cache, significantly reducing both costs and latency.
+
+You can implement prompt caching in your applications with a few steps:
+
+Identify the portions of your prompts that are frequently reused.
+Tag these sections for caching in the list of messages using the new cachePoint block.
+Monitor cache usage and latency improvements in the response metadata usage section.
+
+In my tests, the next invocations take 55 percent less time to complete compared to the first one. Depending on your use case (for example, with more cached content), prompt caching can improve latency up to 85 percent.
+
+Depending on the model, you can set more than one cache point in a list of messages. To find the right cache points for your use case, try different configurations and look at the effect on the reported usage.
+
+With prompt caching, cache reads receive a 90 percent discount compared to noncached input tokens. There are no additional infrastructure charges for cache storage. When using Anthropic models, you pay an additional cost for tokens written in the cache. There are no additional costs for cache writes with Amazon Nova models. For more information, see Amazon Bedrock pricing.
+
+When using prompt caching, content is cached for up to 5 minutes, with each cache hit resetting this countdown. Prompt caching has been implemented to transparently support cross-Region inference. In this way, your applications can get the cost optimization and latency benefit of prompt caching with the flexibility of cross-Region inference.

@@ -1,0 +1,176 @@
+
+Search
+Write
+18
+
+Sascha Heyer
+Gemini Code Assist
+“There are no programmers in 5 years”. Emad Mostaque, the CEO of Stability AI, made this prediction.
+Sascha Heyer
+Google Cloud - Community
+Sascha Heyer
+
+Published in
+Google Cloud - Community
+
+·
+7 min read
+·
+Aug 2, 2024
+54
+
+
+
+
+
+
+AI tools like GitHub Copilot have become industry standards, and Google has launched its competitor, Gemini Code Assist.
+
+We’re not here to debate whether programmers will disappear in five years. Instead, we will use Google’s Gemini Code Assist and test it to see how well it works and whether it can help with daily software engineering tasks.
+
+Introduction to Gemini Code Assist
+Gemini Code Assist is an IDE extension that helps engineers with their development tasks.
+
+There is support for 20 programming languages in a combination of up to 40 natural languages. This is quite impressive, especially the large support for natural languages.
+
+Gemini Code Assist is available as an extension for multiple IDEs:
+
+Visual Studio Code
+IntelliJ IDEA
+PyCharm
+WebStorm
+GoLand
+There is also a deep integration into Google's Cloud Workstation and Cloud Shell Editor (with some of the preview features currently only available there, which we will talk about later in the article).
+
+
+Livestream, YouTube
+This article was part of my Friday livestream series. You can watch all the recordings.
+
+Join me every Friday from 10–11:30 AM CET / 8–10:30 UTC for the Coding GenAI Applications Live Stream! 📺 Get Ready to Code and Laugh Live.
+
+📅 Mark your calendars, grab your favorite beverage, and let’s turn coding chaos into creative solutions together. Who knows, you might even learn something new or at least get a good laugh at my expense!
+
+Where to Watch. The streams will pop up in the feed. If you subscribe to me on one of the platforms, you will get a notification.
+
+LinkedIn: https://www.linkedin.com/in/saschaheyer
+Twitch: https://www.twitch.tv/saschaheyer
+YouTube: https://www.youtube.com/@ml-engineer
+Kick: https://kick.com/mlengineer
+
+Setup
+You need a Google Cloud account and project to use Gemini Code Assist. It is meant for companies that want to provide Gemini Code Assist to their development teams. Obviously, if you are a private person, you can also use it, but you need to have a Google Cloud account.
+
+To set it up, you can follow the official Google documentation: https://cloud.google.com/gemini/docs/discover/set-up-gemini
+
+Essentially it pins down to
+
+Install the Plugin for your specific IDE. Gemini Code Assist is listed in the Visual Studio Code marketplace and JetBrains marketplace
+Enable the Gemini API
+Assign the role Cloud AI Companion API to the users that are allowed to use Gemini Code Assist
+Open your IDE and sign in
+Usage
+There are 4 main ways to interact with Gemini Code Assist.
+
+Gemini Code Assist Chat
+The chat is by far the most advanced way to use Gemini Code Assist. It's like your pair multi-turn chat programming buddy. Describe what you need in as much detail as possible. You can ask questions and guide Gemini in the right direction. For example, you can ask questions about your code or get help finding a bug.
+
+
+The Gemini Code Assist Chat also allows you to paste generated code into a new or inline into an open file.
+
+Smart Actions
+A small Gemini logo is located at the top right of your Visual Studio Code environment. Clicking it opens the smart actions.
+
+
+The nice thing about this approach is that you get a diff directly if you use it to generate code.
+
+
+Code Actions
+Code Actions are available as soon as you select text within an open file. You can use it to explain code, generate unit tests, or generate code by simply writing a prompt within the file itself.
+
+
+Inline Code Suggestions
+Code completion has existed for a long time, but with AI assistant tools, we get much more useful code suggestions. Gemini Code Assist can suggest multiple ones, and you can TAB through the suggestions.
+
+
+Code Transformations (preview)
+Ask Gemini to make changes to your code directly. This could be as simple as adding comments to a Python file. Up to complex features like adding a new feature to a project which requires changes in multiple files. Later is possible due to full codebase awareness. This feature is currently available in Cloud Workstation and Cloud Shell Editor.
+
+
+All those integrations directly into the IDE promise developers to write higher quality code faster without the need to leave the IDE.
+
+Features
+More features run in the background and power the above features and use cases. Some are visible to the user, and others run in the background.
+
+Context-aware prompting
+Gemini Code Assist uses all current active files and open tabs + additional metadata to enrich the prompt. For example, if you have a file open in Visual Studio code, you can simply go to the chat and ask Gemini to explain the code. It will understand what code you are referring to. You can see which files were used as context sources for each response you get from the Gemini Code Assist.
+
+
+License attribution
+A big issue with other AI code assist tools is the unclear license that might be used when using suggested code. With Gemini Code Assist, you get license attributions directly inside your IDE. This helps you understand if code falls under a permissive license and helps companies stay compliant.
+
+Code Customizations (in preview)
+This feature allows you to use your own codebase and documentation to tailor Gemini Code Assists’ output to your specific implementation method inside your organization or repository. You no longer need to rewrite code suggestions to apply to your coding standards.
+
+Full Codebase awareness (in preview)
+This is possible because of the large Gemini 1.5 Pro context size of up to 2 million tokens. Depending on the code, it is somewhere between 30000 and 120000 lines of code.
+
+Google showed in an impressive demo the capabilities that feature brings. Imagine you can simply prompt the model to add a new feature to a project. Due to its full understanding, the model is capable of doing that, and it understands where in the project changes are required and does that automatically.
+
+More
+Google is continuously releasing new features, some of which are in preview. The release notes are the best way to stay up to date: https://cloud.google.com/gemini/docs/codeassist/release-notes
+
+From the release notes, you can also see the upgrade path Google did by integrating their ever-evolving models into Gemini Code Assist
+
+Before March, Gemini Code Assist was using the PaLM model family, especially Codey.
+March 14, 2024
+Updated Gemini Code Assist to use the Gemini 1.0 Pro model.
+June 11, 2024
+Updated Gemini Code Assist to use the Gemini 1.5 Flash model.
+General Knowledge Example
+I have tested some of the general knowledge and saved the response as GitHub Gists if you are interested. Below is a summary and my personal opinion on the response.
+
+Question: How can I create text embeddings with Google Cloud?
+https://gist.github.com/SaschaHeyer/f9eabc6702666af20866002edf224930
+
+Answer to the point describing what the embedding API generally provides
+It mentioned there are different models available to use. It was mentioning Gecko@003. The latest version is 004, not quite the latest version recommended. It's still good.
+Even the task type of the embedding API was mentioned
+We got code, including a sample body
+Probably the best, we got a direct link to the correct documentation.
+Question: How can I deploy an LLM to Google Cloud? The model size is around 80GB.
+https://gist.github.com/SaschaHeyer/e048b3edaefdd6e6952a215305edcabb
+
+Suggests Vertex AI Endpoints and Kubernetes as potential solutions. These are exactly the two options I would also suggest.
+It mentions model compression techniques. Like that because it can reduce costs and increase performance, and it's a technique that is basically standard nowadays.
+It describes the steps to deploy the model.
+The model garden could be a great addition, but I haven't asked for it either.
+With more follow-up questions, I am confident you can get it up and running.
+We can also build a full application using Gemini Code Assist
+Here you can see a typical sequence of prompts I used to generate an application that stores user feedback. This is obviously not the only way to approach this and also not the only use case. Be creative and use it for your daily tasks.
+
+generate a OpenAPI spec that will allow me to store feedback users can 
+give for an LLM output. 
+
+Each feedback should contain:
+
+- a thumbs up or thumps down
+- the LLM prompt
+- the LLM generated text
+- session ID
+Generate a fastapi application based on the feedback.yaml file. 
+This application should store the feedback on BigQuery together with the session ID. 
+write python code to send a post requset to that api endpoint
+add a html page to the app to search for feedbacks based on the session id
+Pricing
+Gemini Code Assist is billed on a subscription model of $22.80 per month per user, which can be reduced to $19 if you subscribe for a year.
+
+Gemini Code Assist is available to try at no cost until November 8, 2024, limited to one user per billing account.
+
+Comparable pricing only considering enterprise offerings:
+
+Google Cloud Gemini Code Assist 19$
+GitHub Copilote 21$
+Amazon Q Developer 21$
+Tabnine 39$
+Thanks for reading and watching
+I appreciate your feedback and questions. You can find me on LinkedIn. Even better, subscribe to my YouTube channel ❤️.

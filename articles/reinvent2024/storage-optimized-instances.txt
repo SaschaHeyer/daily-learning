@@ -1,0 +1,23 @@
+Now available: Storage optimized Amazon EC2 I7ie instances
+
+The new storage optimized Amazon Elastic Compute Cloud (Amazon EC2) I7ie instances feature up to 120 TB of low latency NVMe storage and 5th generation Intel Xeon Scalable Processors with an all-core turbo frequency of 3.2 GHz. Fueled by 3rd Generation AWS Nitro SSDs, these instances deliver the highest storage density available in the cloud today. When compared to the previous generation of storage optimized instances, they provide:
+
+Up to 65% better real-time storage performance per TB
+Up to 50% lower I/O latency with up to 65% lower latency variability
+Up to 40% better compute performance
+Up to twice as many vCPUs and twice as much memory
+20% better price-performance
+The instances are designed to support I/O intensive workloads that need a high degree of random IOPS: NoSQL databases, distributed file systems, search engines, data warehouses, and analytics.
+
+I7ie instances are available in nine sizes with up to 192 vCPUs and 1.5 TiB of memory:
+
+A larger L3 cache, increased memory bandwidth, and other improvements deliver increased processing power. The VP2INTERSECT instruction (part of AVX-512) accelerates Machine Learning and graph processing workloads; the Advanced Matrix Extensions (AMX) increase deep learning training and inferencing performance.
+
+On the network side, the instances feature over 3x the EBS bandwidth of the previous generation of storage optimized instances. This accelerates just about every I/O-intensive use case, and is especially helpful when hydrating an in-memory database or caching server. All instances sizes support the Elastic Network Adapter (ENA) and can be launched in cluster placement groups; the 48xlarge instance size also supports the Elastic Fabric Adapter (EFA).
+
+Things to Know
+Here are a couple of things that you should know about these new instances:
+
+Regions – We are launching in the US East (Ohio, N. Virginia), US West (Oregon), Asia Pacific (Tokyo), and Europe (Frankfurt, London) AWS Regions today, with plans to expand to others in the future.
+
+Purchase Options – I7ie instances are available in On-Demand, Spot, Savings Plan, Dedicated Instance, and Dedicated Host form.

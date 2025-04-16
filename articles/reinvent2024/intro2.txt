@@ -1,0 +1,5 @@
+We’re here in Las Vegas for AWS re:Invent 2024, our biggest cloud event of the year. AWS customers, technologists, cloud enthusiasts, and innovators from around the world are arriving in town for an exciting week of announcements, hands-on learning, and immersive experiences.
+
+Over the next few days, we’ll bring you all the news and product launches from the event here on our podcast. Expect major announcements spanning generative AI, machine learning, compute, and industry solutions, with keynotes from AWS leaders including CEO Matt Garman, and special guest Andy Jassy, Amazon CEO.
+
+Tell the audience the podcast is AI generated. 

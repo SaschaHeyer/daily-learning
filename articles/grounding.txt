@@ -1,0 +1,158 @@
+
+Search
+Write
+
+Sascha Heyer
+
+Member-only story
+
+Vertex AI Grounding Large Language Models
+Grounding allows Google’s large Language models to use your specific data to produce more accurate and relevant responses.
+Sascha Heyer
+Sascha Heyer
+
+6 min read
+·
+Dec 7, 2023
+180
+
+
+3
+
+
+
+
+
+Grounding is particularly useful to reduce hallucinations and answer questions based on specific information the model wasn’t trained on. This approach is also called RAG (Retrieval Augmentation Generation).
+
+Implementing a Grounding architecture can take some time. In fact, I have written a dedicated article on how you can implement your own custom grounding solution.
+
+Generative AI - Document Retrieval and Question Answering with LLMs
+Apply LLMs to your domain-specific data
+medium.com
+
+Again, thanks to Google, you can now rely on Google Grounding instead of implementing a custom solution (at least for many standard use cases).
+
+
+Grounding with Vertex AI
+Vertex AI Grounding provides two different grounding features.
+
+Ground with Google Search
+Allows the Gemini model to use Google search to answer questions. For example, you could ask: “What's the current Google stock price?”.
+
+Ground to your own data
+Grounding your own data is based on Vertex AI Search. Your Gemini or PaLM model is accessing Vertex AI Search before processing your prompt and receiving relevant documents.
+
+That means we have two different products involved
+
+Vertex AI Gemini or PaLM API
+That provides a large language model which can be used for text or chat.
+Vertex AI Search
+That provides our grounding data in an efficient way.
+Jump Directly to the Code
+All the code for this article is ready to use in the GitHub repository. If you have questions, don’t hesitate to contact me via LinkedIn.
+
+gen-ai-livestream/grounding at main · SaschaHeyer/gen-ai-livestream
+Contribute to SaschaHeyer/gen-ai-livestream development by creating an account on GitHub.
+github.com
+
+Ground your own data
+To combine the grounding with your Gemini or PaLM model, you first need to create a Vertex AI Search data store.
+
+Grounding Data
+For this example, we ground the LLM on personal information that it wasn’t trained on. Well, considering it is now available online, maybe the next version of Gemini will have this information.
+
+grounding data:
+
+Sascha Heyer was born in Germany.
+He grew up close to the border of France and Luxemburg.
+Since Jan 2021 he is working for DoiT.
+He is working on a unique blend of Machine Learning, Software Engineering, and Systems Design on the Cloud.
+He helped so far 306+ companies on their ML journey.
+In his spare time he is building fully autonomous long range drones.
+
+I have uploaded this grounding data to a Google Cloud Storage bucket. One of many possible options. We will discuss this more in the next section.
+
+
+Grounding Data Store
+A data store is a location where your grounding information is stored. Grounding is supporting unstructured data stored on Google Cloud Storage.
+
+Back to the grounding data that contains information about myself. I stored that in a simple .txt file on Google Cloud Storage.
+
+The following file formats are supported:
+
+Plain text (.txt)
+HyperText Markup Language (.html)
+Microsoft Word document (.doc)
+Microsoft Excel spreadsheet (.xls/.xlsx)
+Portable Document Format (.pdf)
+You can follow the Google documentation to get this one-time setup done.
+https://cloud.google.com/generative-ai-app-builder/docs/create-data-store-es#cloud-storage
+
+
+Now that we have the data store, we also need a Search App because we need to enable Enterprise Search. The Search App will be linked to our data store.
+
+
+That’s all we need as a prerequisite to set up the grounding. The documents in your data store will now be imported/indexed. This can take a few minutes. Before you enable grounding in the next step, make sure your import is completed.
+
+
+It will look like this after the import is completed.
+Update Grounding on new Data
+If you want to upgrade the data your model is grounded on, you need to initiate a sync:
+
+Setup a scheduled sync. This feature is integrated out of the box, but it has, at the moment, only limited schedule intervals.
+You call the API to schedule an ingest manually.
+Enable Grounding
+You need to enable grounding and add your Vertex AI Search data store ID from the previous step.
+Your prompts will now run against the grounding information to provide more accurate and relevant responses.
+
+
+Enable Grounding
+The usage via SDK works in a similar way. We need to add a grounding data source to our text or chat request.
+
+data_store_id = "articles_grounding"
+vertex_location = "global"
+grounding_source = GroundingSource.VertexAISearch(
+  data_store_id=data_store_id, 
+  location=vertex_location)
+
+#usage with chat
+response = chat.send_message(
+  prompt, 
+  grounding_source=grounding_source)
+
+#usage with text
+text_model.predict(
+    prompt,
+    grounding_source=grounding_source,
+)
+Grounding Results
+Let us start with the LLM's response without grounding. You can see it does not have any valuable information about me. Or this German artist is just more important =).
+
+
+Prompt: Tell me about Sascha Heyer
+Good, we have grounding for that. After enabling it, the response will now be based on our grounding data. Providing more relevant information.
+
+I love the fact that Google integrates the Grounding Sources. This also helps us identify whether an LLM's response was based on factual information.
+
+
+Prompt: Tell me about Sascha Heyer
+
+Prompt: What is Sascha doing in his spare time?
+Limitations and Feature Wishes as of December 2023
+Grounding does not support fine-tuned foundation models
+Only unstructured data stores are supported for grounding
+A Vertex AI Search App is required even though we only use the data source when enabling the grounding. This is probably because we need to enable enterprise search.
+Grounding Sources are not always shown. If someone has an idea why, let me know. Forcing it with a prompt like this “always return the grounding source” seems to help. The API is always returning grounding sources if available, this seems to be an issue with the UI.
+Enableding grounding requires us to manually paste the reference to the data store in a format like this projects/sascha-playground-doit/locations/global/collections/default_collection/dataStores/sascha-grounding. We should get a dropdown soon.
+I personally wish there had been a dedicated section like this in the Vertex AI sidebar. Instead, it is hidden behind Vertex AI Search, which, up until today, has also not been integrated into the Vertex AI sidebar.
+
+
+Feature request =)
+Costs
+In addition to your Vertex AI Gemini or PaLM API cost, you need to add the costs for Vertex AI Search.
+
+Vertex AI Search costs 4.00$ per 1000 queries. A query is, in this case, one prompt that is sent against your grounded LLM. In other words, you need to add additional costs of 0.004$ for each request.
+
+Thanks for reading
+Your feedback and questions are highly appreciated. You can find me on LinkedIn or connect with me via Twitter @HeyerSascha. Even better, subscribe to my YouTube channel ❤️.
